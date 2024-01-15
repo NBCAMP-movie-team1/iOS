@@ -1,5 +1,5 @@
 //
-//  MovieAP.swift
+//  MovieAPI.swift
 //  NBCAMP-movie-team1
 //
 //  Created by t2023-m0035 on 1/15/24.
@@ -24,7 +24,7 @@ final class MovieRequest {
                 return
             } else if let httpResponse = response as? HTTPURLResponse {
                 print("Status Code: \(httpResponse.statusCode)")
-
+                
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]

@@ -22,7 +22,7 @@ struct Movie: Decodable {
     let video: Bool
     let voteAverage: Double
     let voteCount: Int
-
+    
     private enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"

@@ -97,7 +97,7 @@
 		1B037D3B2B54FA3F009323C4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				1B037D422B551D33009323C4 /* Vetworking */,
+				1B037D422B551D33009323C4 /* Networking */,
 				1B037D3F2B54FBB3009323C4 /* Model */,
 				1B037D3E2B54FBAE009323C4 /* View */,
 				1B037D3C2B54FA46009323C4 /* ViewController */,
@@ -136,12 +136,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1B037D422B551D33009323C4 /* Vetworking */ = {
+		1B037D422B551D33009323C4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				1B037D432B551D40009323C4 /* MovieAPI.swift */,
 			);
-			path = Vetworking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
