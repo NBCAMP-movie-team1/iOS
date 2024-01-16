@@ -20,6 +20,25 @@ final class MovieRequest {
             "Authorization": "Bearer \(apiKey)"
         ]
         
+        dataTask(request, completion)
+    }
+    
+    
+    static func searchMovieRequest(_ query: String, page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        let apiKey = Bundle.main.apiKey
+        
+        let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=false&language=en-US&page=\(page)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = [
+            "accept": "application/json",
+            "Authorization": "Bearer \(apiKey)"
+        ]
+        
+        dataTask(request, completion)
+    }
+    
+    private static func dataTask(_ request: URLRequest, _ completion: @escaping (Result<[Movie], Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))

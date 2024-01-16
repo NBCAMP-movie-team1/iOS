@@ -12,24 +12,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchNowPlayingList()
     }
     
-}
-
-// MARK: - API Fetch Extensions
-
-extension MainViewController {
-    func fetchNowPlayingList() {
-        MovieRequest.allMovieRequest("now_playing", page: 1) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    print("JSON Response: \(data)")
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
-        }
-    }
 }
