@@ -16,6 +16,8 @@
 		1B037D462B552082009323C4 /* MovieAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D452B552082009323C4 /* MovieAPIModel.swift */; };
 		1B037D4B2B56122B009323C4 /* MovieInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B037D4A2B56122B009323C4 /* MovieInfo.plist */; };
 		1B037D4E2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D4D2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift */; };
+		1B037D502B562B8E009323C4 /* DetailMovieAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D4F2B562B8E009323C4 /* DetailMovieAPIModel.swift */; };
+		1B037D522B562CB0009323C4 /* DetailMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D512B562CB0009323C4 /* DetailMovieAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		1B037D452B552082009323C4 /* MovieAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPIModel.swift; sourceTree = "<group>"; };
 		1B037D4A2B56122B009323C4 /* MovieInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MovieInfo.plist; sourceTree = "<group>"; };
 		1B037D4D2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NBCAMPMovieTeam1++Bundle.swift"; sourceTree = "<group>"; };
+		1B037D4F2B562B8E009323C4 /* DetailMovieAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieAPIModel.swift; sourceTree = "<group>"; };
+		1B037D512B562CB0009323C4 /* DetailMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				1B037D452B552082009323C4 /* MovieAPIModel.swift */,
+				1B037D4F2B562B8E009323C4 /* DetailMovieAPIModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				1B037D432B551D40009323C4 /* MovieAPI.swift */,
+				1B037D512B562CB0009323C4 /* DetailMovieAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 				1B037D292B54FA22009323C4 /* MainViewController.swift in Sources */,
 				1B037D442B551D40009323C4 /* MovieAPI.swift in Sources */,
 				1B037D4E2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift in Sources */,
+				1B037D502B562B8E009323C4 /* DetailMovieAPIModel.swift in Sources */,
+				1B037D522B562CB0009323C4 /* DetailMovieAPI.swift in Sources */,
 				1B037D462B552082009323C4 /* MovieAPIModel.swift in Sources */,
 				1B037D252B54FA22009323C4 /* AppDelegate.swift in Sources */,
 				1B037D272B54FA22009323C4 /* SceneDelegate.swift in Sources */,
