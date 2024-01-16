@@ -12,22 +12,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchMovieList()
     }
     
-}
-
-extension MainViewController {
-    func fetchMovieList() {
-        MovieRequest.makeMovieRequest { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    print("JSON Response: \(data)")
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
-        }
-    }
 }
