@@ -12,21 +12,40 @@ class DetailViewController: UIViewController {
     // MARK: - UI Properties
     
     let detailMovieView = DetailMovieView()
+    let paymentViewController = PaymentViewController()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUILayout()
+        setUI()
+        setLayout()
     }
     
 }
 
+// MARK: - UIButton Action Methods
+
+extension DetailViewController {
+    @objc private func didTapPaymentButton() {
+        self.navigationController?.pushViewController(paymentViewController, animated: true)
+    }
+}
+
 // MARK: - Extensions
 extension DetailViewController {
-    private func setUILayout() {
+    private func setAddTarget() {
+        detailMovieView.bookNowButton.addTarget(self, action: #selector(didTapPaymentButton), for: .touchUpInside)
+    }
+    
+    private func setUI() {
         view.backgroundColor = .white
+        
+        setAddTarget()
+    }
+    
+    private func setLayout() {
         view.addSubview(detailMovieView)
         
         detailMovieView.translatesAutoresizingMaskIntoConstraints = false

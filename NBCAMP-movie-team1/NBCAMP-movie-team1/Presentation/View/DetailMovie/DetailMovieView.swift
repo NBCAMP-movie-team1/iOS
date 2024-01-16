@@ -47,7 +47,7 @@ class DetailMovieView: UIView {
         return label
     }()
     
-    private let bookNowButton: UIButton = PointButton(title: "예매하기")
+    let bookNowButton: UIButton = PointButton(title: "예매하기")
     
     // MARK: - Life Cycle
     
