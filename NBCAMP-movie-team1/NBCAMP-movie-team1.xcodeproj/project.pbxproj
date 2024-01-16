@@ -18,6 +18,10 @@
 		1B037D4E2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D4D2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift */; };
 		1B037D502B562B8E009323C4 /* DetailMovieAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D4F2B562B8E009323C4 /* DetailMovieAPIModel.swift */; };
 		1B037D522B562CB0009323C4 /* DetailMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D512B562CB0009323C4 /* DetailMovieAPI.swift */; };
+		1B037D552B5664CC009323C4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D542B5664CC009323C4 /* DetailViewController.swift */; };
+		1B037D582B56677B009323C4 /* DetailMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D572B56677B009323C4 /* DetailMovieView.swift */; };
+		1B037D5B2B567B8D009323C4 /* PointButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D5A2B567B8D009323C4 /* PointButton.swift */; };
+		1B037D5E2B56904E009323C4 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D5D2B56904E009323C4 /* PaymentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		1B037D4D2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NBCAMPMovieTeam1++Bundle.swift"; sourceTree = "<group>"; };
 		1B037D4F2B562B8E009323C4 /* DetailMovieAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieAPIModel.swift; sourceTree = "<group>"; };
 		1B037D512B562CB0009323C4 /* DetailMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieAPI.swift; sourceTree = "<group>"; };
+		1B037D542B5664CC009323C4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1B037D572B56677B009323C4 /* DetailMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieView.swift; sourceTree = "<group>"; };
+		1B037D5A2B567B8D009323C4 /* PointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointButton.swift; sourceTree = "<group>"; };
+		1B037D5D2B56904E009323C4 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				1B037D392B54FA2E009323C4 /* App */,
+				1B037D592B567B7A009323C4 /* Components */,
 				1B037D3A2B54FA33009323C4 /* Support */,
 			);
 			path = Global;
@@ -116,6 +125,8 @@
 		1B037D3C2B54FA46009323C4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1B037D5C2B569040009323C4 /* Payment */,
+				1B037D532B5664BB009323C4 /* DetailMovie */,
 				1B037D3D2B54FBA3009323C4 /* Main */,
 			);
 			path = ViewController;
@@ -132,6 +143,7 @@
 		1B037D3E2B54FBAE009323C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1B037D562B56676D009323C4 /* DetailMovie */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -152,6 +164,38 @@
 				1B037D512B562CB0009323C4 /* DetailMovieAPI.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		1B037D532B5664BB009323C4 /* DetailMovie */ = {
+			isa = PBXGroup;
+			children = (
+				1B037D542B5664CC009323C4 /* DetailViewController.swift */,
+			);
+			path = DetailMovie;
+			sourceTree = "<group>";
+		};
+		1B037D562B56676D009323C4 /* DetailMovie */ = {
+			isa = PBXGroup;
+			children = (
+				1B037D572B56677B009323C4 /* DetailMovieView.swift */,
+			);
+			path = DetailMovie;
+			sourceTree = "<group>";
+		};
+		1B037D592B567B7A009323C4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1B037D5A2B567B8D009323C4 /* PointButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1B037D5C2B569040009323C4 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				1B037D5D2B56904E009323C4 /* PaymentViewController.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +269,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B037D582B56677B009323C4 /* DetailMovieView.swift in Sources */,
+				1B037D552B5664CC009323C4 /* DetailViewController.swift in Sources */,
+				1B037D5E2B56904E009323C4 /* PaymentViewController.swift in Sources */,
 				1B037D292B54FA22009323C4 /* MainViewController.swift in Sources */,
+				1B037D5B2B567B8D009323C4 /* PointButton.swift in Sources */,
 				1B037D442B551D40009323C4 /* MovieAPI.swift in Sources */,
 				1B037D4E2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift in Sources */,
 				1B037D502B562B8E009323C4 /* DetailMovieAPIModel.swift in Sources */,
