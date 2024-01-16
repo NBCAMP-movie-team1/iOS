@@ -12,14 +12,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchMovieList()
+        fetchNowPlayingList()
     }
     
 }
 
+// MARK: - API Fetch Extensions
+
 extension MainViewController {
-    func fetchMovieList() {
-        MovieRequest.makeMovieRequest { result in
+    func fetchNowPlayingList() {
+        MovieRequest.allMovieRequest("now_playing", page: 1) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

@@ -9,10 +9,10 @@ import Foundation
 
 final class MovieRequest {
     
-    static func makeMovieRequest(completion: @escaping (Result<[Movie], Error>) -> Void) {
+    static func allMovieRequest(_ section: String, page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         let apiKey = Bundle.main.apiKey
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(section)?language=en-US&page=\(page)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = [
