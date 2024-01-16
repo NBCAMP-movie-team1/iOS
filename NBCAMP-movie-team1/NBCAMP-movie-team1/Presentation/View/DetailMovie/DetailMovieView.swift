@@ -41,7 +41,8 @@ class DetailMovieView: UIView {
     
     private let discriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "discription"
+        label.text = "discription discription discription discription discription discription discription discription discription discription discription discription discription discription discription discription discription disc"
+        label.textAlignment = .center
         label.numberOfLines = 0
         
         return label
