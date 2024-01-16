@@ -10,12 +10,14 @@ import Foundation
 final class MovieRequest {
     
     static func makeMovieRequest(completion: @escaping (Result<[Movie], Error>) -> Void) {
+        let apiKey = Bundle.main.apiKey
+        
         let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = [
             "accept": "application/json",
-            "Authorization": Bundle.main.infoDictionary?["API_KEY"] as! String
+            "Authorization": "Bearer \(apiKey)"
         ]
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
