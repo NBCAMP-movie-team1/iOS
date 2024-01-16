@@ -47,18 +47,7 @@ class DetailMovieView: UIView {
         return label
     }()
     
-    private let bookNowButton: UIButton = {
-       let button = UIButton()
-        button.setTitle("예매하기", for: .normal)
-        button.backgroundColor = UIColor(red: 0.00, green: 0.35, blue: 0.90, alpha: 1.00)
-        
-        button.layer.cornerRadius = 20
-        button.clipsToBounds = true
-        button.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
-        
-        return button
-        
-    }()
+    private let bookNowButton: UIButton = PointButton(title: "예매하기")
     
     // MARK: - Life Cycle
     
