@@ -91,7 +91,6 @@ extension DetailMovieView {
     // MARK: - Auto Layout
     
     private func setAutoLayout(_ stackView: UIStackView) {
-        // stackView
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -100,7 +99,6 @@ extension DetailMovieView {
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
         
-        // posterImageView
         posterImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             posterImageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.5)

@@ -11,7 +11,18 @@ class MovieListViewController: UIViewController {
     
     // MARK: - UI Properties
     
-    let movieListView = MovieListView()
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var stackView: UIStackView = { createStackView() }()
+    
+    let nowPlayingView = MovieListCollectionView(sectionTitle: "Now Playing")
+    let popularView = MovieListCollectionView(sectionTitle: "Popular")
+    let topRatedView = MovieListCollectionView(sectionTitle: "Top Rated")
+    
     let detailMovieViewController: DetailMovieViewController
     
     // MARK: - Life Cycle
@@ -37,7 +48,6 @@ class MovieListViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 // MARK: - Extensions
@@ -49,18 +59,50 @@ extension MovieListViewController {
     
     private func setUI() {
         view.backgroundColor = .white
-        movieListView.button.addTarget(self, action: #selector(goToDetailMovieButton), for: .touchUpInside)
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
     }
     
     private func setLayout() {
-        view.addSubview(movieListView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        nowPlayingView.translatesAutoresizingMaskIntoConstraints = false
+        popularView.translatesAutoresizingMaskIntoConstraints = false
+        topRatedView.translatesAutoresizingMaskIntoConstraints = false
         
-        movieListView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            movieListView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
-            movieListView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            movieListView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            movieListView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3/8),
+            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3/8),
+            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3/8)
+        ])
+    }
+    
+    private func createStackView() -> UIStackView {
+        let stackView = UIStackView()
+        
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 30
+        
+        [nowPlayingView, popularView, topRatedView].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        
+        return stackView
     }
 }

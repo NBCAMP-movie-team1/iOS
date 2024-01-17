@@ -25,8 +25,10 @@
 		1B037D612B576A91009323C4 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D602B576A91009323C4 /* MovieListViewController.swift */; };
 		1B037D642B576AC8009323C4 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D632B576AC8009323C4 /* MypageViewController.swift */; };
 		1B037D672B576B0B009323C4 /* SignUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D662B576B0B009323C4 /* SignUserView.swift */; };
-		1B037D6C2B5771D2009323C4 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D6B2B5771D2009323C4 /* MovieListView.swift */; };
+		1B037D6C2B5771D2009323C4 /* MovieListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D6B2B5771D2009323C4 /* MovieListCollectionView.swift */; };
 		1B037D702B577DAA009323C4 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D6F2B577DAA009323C4 /* PaymentView.swift */; };
+		1B037D742B57A321009323C4 /* MovieSectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D732B57A320009323C4 /* MovieSectionLabel.swift */; };
+		1B037D7A2B57BBBF009323C4 /* MovieListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D792B57BBBF009323C4 /* MovieListCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +52,10 @@
 		1B037D602B576A91009323C4 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		1B037D632B576AC8009323C4 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		1B037D662B576B0B009323C4 /* SignUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUserView.swift; sourceTree = "<group>"; };
-		1B037D6B2B5771D2009323C4 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
+		1B037D6B2B5771D2009323C4 /* MovieListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCollectionView.swift; sourceTree = "<group>"; };
 		1B037D6F2B577DAA009323C4 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
+		1B037D732B57A320009323C4 /* MovieSectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSectionLabel.swift; sourceTree = "<group>"; };
+		1B037D792B57BBBF009323C4 /* MovieListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				1B037D5A2B567B8D009323C4 /* PointButton.swift */,
+				1B037D732B57A320009323C4 /* MovieSectionLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -240,7 +245,8 @@
 		1B037D6A2B5771C7009323C4 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
-				1B037D6B2B5771D2009323C4 /* MovieListView.swift */,
+				1B037D6B2B5771D2009323C4 /* MovieListCollectionView.swift */,
+				1B037D792B57BBBF009323C4 /* MovieListCollectionViewCell.swift */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -325,11 +331,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B037D582B56677B009323C4 /* DetailMovieView.swift in Sources */,
+				1B037D742B57A321009323C4 /* MovieSectionLabel.swift in Sources */,
 				1B037D552B5664CC009323C4 /* DetailMovieViewController.swift in Sources */,
 				1B037D5E2B56904E009323C4 /* PaymentViewController.swift in Sources */,
 				1B037D612B576A91009323C4 /* MovieListViewController.swift in Sources */,
 				1B037D292B54FA22009323C4 /* MainViewController.swift in Sources */,
-				1B037D6C2B5771D2009323C4 /* MovieListView.swift in Sources */,
+				1B037D6C2B5771D2009323C4 /* MovieListCollectionView.swift in Sources */,
+				1B037D7A2B57BBBF009323C4 /* MovieListCollectionViewCell.swift in Sources */,
 				1B037D5B2B567B8D009323C4 /* PointButton.swift in Sources */,
 				1B037D672B576B0B009323C4 /* SignUserView.swift in Sources */,
 				1B037D442B551D40009323C4 /* MovieAPI.swift in Sources */,
