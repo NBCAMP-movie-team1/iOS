@@ -104,9 +104,14 @@ extension MovieListCollectionView: UICollectionViewDataSource, UICollectionViewD
     // MARK: UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = collectionView.bounds.size.width * 0.43
-        let cellHeight = cellWidth * 1.3
+        let cellWidth = collectionView.bounds.size.width * 0.4
+        let cellHeight = cellWidth * 1.6
         
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = movieList[indexPath.item]
+        print(selectedMovie.id, selectedMovie.title)
     }
 }
