@@ -39,9 +39,9 @@ class MovieListCollectionViewCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.83),
             
-            label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 0),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor)
+            label.widthAnchor.constraint(equalTo: widthAnchor),
         ])
     }
     
