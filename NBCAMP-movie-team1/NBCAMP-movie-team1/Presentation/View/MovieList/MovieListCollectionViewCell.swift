@@ -11,18 +11,22 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = "MovieListCell"
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .systemMint
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -37,11 +41,11 @@ class MovieListCollectionViewCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.83),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8),
             
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6),
-            label.widthAnchor.constraint(equalTo: widthAnchor),
+            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
+            label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
         ])
     }
     
@@ -50,7 +54,6 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with movie: MovieList) {
-        imageView.image = UIImage(systemName: movie.imageName)
         label.text = movie.title
     }
 }

@@ -11,25 +11,20 @@ class MovieListCollectionView: UIView {
     
     // MARK: - Properties
     
-    let dumymovies = [
-        MovieList(title: "영화 1", imageName: "star.fill"),
-        MovieList(title: "영화 2", imageName: "star"),
-        MovieList(title: "영화 3", imageName: "trash"),
-        MovieList(title: "영화 4", imageName: "star"),
-        MovieList(title: "영화 5", imageName: "star.fill")
-    ]
+    var movieList: [MovieList] = []
     
     // MARK: - UI Properties
     
-    let nowPlayingLabel: UILabel
+    private let nowPlayingLabel: UILabel
     
-    let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
+        
         return collectionView
     }()
     
@@ -45,10 +40,14 @@ class MovieListCollectionView: UIView {
         setLayout()
     }
     
+    func updateMovieList(_ movieList: [MovieList]) {
+        self.movieList = movieList
+        collectionView.reloadData()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 // MARK: - Extensions
@@ -92,12 +91,12 @@ extension MovieListCollectionView: UICollectionViewDataSource, UICollectionViewD
     // MARK: UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dumymovies.count
+        return movieList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.reuseIdentifier, for: indexPath) as! MovieListCollectionViewCell
-        let movie = dumymovies[indexPath.item]
+        let movie = movieList[indexPath.item]
         cell.configure(with: movie)
         return cell
     }

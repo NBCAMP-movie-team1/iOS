@@ -34,6 +34,7 @@
 		1B037D852B580139009323C4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D842B580139009323C4 /* SearchViewController.swift */; };
 		1B037D882B58015D009323C4 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D872B58015D009323C4 /* CollectionViewCell.swift */; };
 		1B037D8A2B580176009323C4 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D892B580176009323C4 /* CustomCollectionView.swift */; };
+		1B037D8C2B58362E009323C4 /* MovieListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D8B2B58362E009323C4 /* MovieListManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		1B037D842B580139009323C4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1B037D872B58015D009323C4 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		1B037D892B580176009323C4 /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
+		1B037D8B2B58362E009323C4 /* MovieListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 		1B037D5F2B576A86009323C4 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				1B037D8B2B58362E009323C4 /* MovieListManager.swift */,
 				1B037D602B576A91009323C4 /* MovieListViewController.swift */,
 			);
 			path = MovieList;
@@ -363,6 +366,7 @@
 			files = (
 				1B037D582B56677B009323C4 /* DetailMovieView.swift in Sources */,
 				1B037D832B58011B009323C4 /* SearchManager.swift in Sources */,
+				1B037D8C2B58362E009323C4 /* MovieListManager.swift in Sources */,
 				1B037D742B57A321009323C4 /* MovieSectionLabel.swift in Sources */,
 				1B037D552B5664CC009323C4 /* DetailMovieViewController.swift in Sources */,
 				1B037D8A2B580176009323C4 /* CustomCollectionView.swift in Sources */,
