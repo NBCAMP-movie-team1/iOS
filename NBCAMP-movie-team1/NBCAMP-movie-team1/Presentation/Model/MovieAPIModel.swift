@@ -40,3 +40,8 @@ struct Movie: Decodable {
         case voteCount = "vote_count"
     }
 }
+
+struct MovieList {
+    let title: String
+    let imageName: String
+}
