@@ -28,14 +28,14 @@ class SignUserView: UIView {
     }()
 
     let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("로그인", for: .normal)
+        let button = PointButton(title: "로그인")
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         return button
     }()
 
     let signUpButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("회원가입", for: .normal)
+        let button = PointButton(title: "회원가입")
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         return button
     }()
     

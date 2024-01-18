@@ -32,11 +32,13 @@ class SignUpViewController: UIViewController {
     }()
 
     private let signUpButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("회원가입", for: .normal)
+        let button =  PointButton(title: "회원가입")
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
