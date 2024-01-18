@@ -44,5 +44,6 @@ struct Movie: Decodable {
 struct MovieList {
     let title: String
     let imagePath: String
-    let popularity: Double
+    let popularity: Double?
+    let id: Int
 }

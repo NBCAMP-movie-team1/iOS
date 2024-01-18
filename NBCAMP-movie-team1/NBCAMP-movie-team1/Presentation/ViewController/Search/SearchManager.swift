@@ -15,9 +15,9 @@ class SearchManager{
             switch result {
             case .success(let movies):
                 self.filteredArr = movies.map {
-                    MovieList(title: $0.title, imagePath: $0.posterPath ?? "", popularity: $0.popularity)
+                    MovieList(title: $0.title, imagePath: $0.posterPath ?? "", popularity: $0.popularity, id: $0.id)
                 }.filter { $0.title.lowercased().contains(text.lowercased()) }
-                self.filteredArr.sort{ $0.popularity > $1.popularity }
+                self.filteredArr.sort{ $0.popularity! > $1.popularity! }
                 
                 if self.filteredArr.isEmpty {
                     DispatchQueue.main.async{ self.showAlert() }
