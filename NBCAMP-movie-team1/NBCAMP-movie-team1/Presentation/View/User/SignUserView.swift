@@ -18,9 +18,10 @@ class SignUserView: UIView {
     }()
     
     let usernameTextField: UITextField = {
-        let textField = UITextField()
+        let textField = GrayTextField()
+        textField.leftLabelText = "ID"
         textField.placeholder = "아이디를 입력하세요"
-        textField.borderStyle = .roundedRect
+        
         return textField
     }()
 
