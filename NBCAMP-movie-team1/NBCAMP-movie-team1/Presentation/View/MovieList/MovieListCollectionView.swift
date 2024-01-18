@@ -121,6 +121,6 @@ extension MovieListCollectionView: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = movieList[indexPath.item]
-        delegate?.didSelectMovie(withId: selectedMovie.id)
+        delegate?.didSelectMovie(withId: Int(selectedMovie.popularity))
     }
 }

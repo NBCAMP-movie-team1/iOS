@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SearchManager{
     var filteredArr: [MovieList] = []
@@ -14,19 +15,28 @@ class SearchManager{
             switch result {
             case .success(let movies):
                 self.filteredArr = movies.map {
-                    MovieList(title: $0.title, imagePath: $0.posterPath!, popularity: $0.popularity)
+                    MovieList(title: $0.title, imagePath: $0.posterPath ?? "", popularity: $0.popularity)
                 }.filter { $0.title.lowercased().contains(text.lowercased()) }
                 self.filteredArr.sort{ $0.popularity > $1.popularity }
-                print(self.filteredArr)
                 
                 if self.filteredArr.isEmpty {
-                    print("똑바로 적어")
+                    DispatchQueue.main.async{ self.showAlert() }
                 } else {
                     completionHandler()
                 }
             case .failure(let error):
                 print("Error: \(error)")
             }
+        }
+    }
+    func showAlert(){
+        let alert = UIAlertController(title: "알림", message: "결과 없음", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "확인", style: .default, handler: nil)
+        
+        alert.addAction(confirm)
+        
+        if let topViewController = UIApplication.shared.windows.first?.rootViewController {
+            topViewController.present(alert, animated: true, completion: nil)
         }
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchViewController: UIViewController{
-    var customCollectionView: CustomCollectionView! //
+    var customCollectionView: CustomCollectionView!
     var searchManager = SearchManager()
     
     override func viewDidLoad() {
@@ -33,9 +33,8 @@ class SearchViewController: UIViewController{
         customCollectionView.translatesAutoresizingMaskIntoConstraints = false
         customCollectionView.backgroundColor = .clear
         self.view.addSubview(customCollectionView)
-        customCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         customCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
-        customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         customCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
         customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
@@ -57,9 +56,13 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.bounds.size.width * 0.5
-        let cellHeight = cellWidth * 1.5
+        let cellHeight = cellWidth * 1.7
+        let lay = collectionViewLayout as! UICollectionViewFlowLayout
+
+        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+
         
-        return CGSize(width: cellWidth, height: cellHeight)
+        return CGSize(width: widthPerItem, height: cellHeight)
     }
 }
 

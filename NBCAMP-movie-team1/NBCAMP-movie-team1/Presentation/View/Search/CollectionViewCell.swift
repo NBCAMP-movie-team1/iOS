@@ -8,13 +8,12 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell{
-//    var titleLabel: UILabel!
-//    var titleImage: UIImageView!
+
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.systemFont(ofSize: 13)
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
         titleLabel.numberOfLines = 0
         return titleLabel
     }()
@@ -22,7 +21,6 @@ class CollectionViewCell: UICollectionViewCell{
     let titleImage: UIImageView = {
         let titleImage = UIImageView()
         titleImage.contentMode = .scaleAspectFit
-        titleImage.backgroundColor = .systemMint
         titleImage.translatesAutoresizingMaskIntoConstraints = false
         return titleImage
     }()
@@ -36,14 +34,14 @@ class CollectionViewCell: UICollectionViewCell{
         [titleLabel, titleImage].forEach {
             addSubview($0)
         }
+        setLayout()
+    }
+    
+    func setLayout() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: titleImage.bottomAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.rightAnchor.constraint(equalTo: titleImage.rightAnchor),
-//            titleLabel.leftAnchor.constraint(equalTo: titleImage.leftAnchor),
-
             
             titleImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleImage.topAnchor.constraint(equalTo: topAnchor),
