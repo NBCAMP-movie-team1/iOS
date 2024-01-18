@@ -50,7 +50,12 @@ extension MainViewController {
                 print("로그인 성공")
                 self.navigationController?.pushViewController(movieListViewController, animated: true)
             } else {
-                print("로그인 실패")
+                let alertController = UIAlertController(title: "로그인 실패", message: "아이디 또는 비밀번호가 일치하지 않습니다.", preferredStyle: .alert)
+
+                let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alertController.addAction(okAction)
+
+                present(alertController, animated: true, completion: nil)
             }
         }
 

@@ -26,10 +26,10 @@ class SignUserView: UIView {
     }()
 
     let passwordTextField: UITextField = {
-        let textField = UITextField()
+        let textField = GrayTextField()
+        textField.leftLabelText = "PW"
         textField.placeholder = "비밀번호를 입력하세요"
         textField.isSecureTextEntry = true
-        textField.borderStyle = .roundedRect
         return textField
     }()
 
