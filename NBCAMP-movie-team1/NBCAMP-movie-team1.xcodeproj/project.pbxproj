@@ -36,6 +36,8 @@
 		1B037D8C2B58362E009323C4 /* MovieListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D8B2B58362E009323C4 /* MovieListManager.swift */; };
 		1B037D8F2B5847E7009323C4 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D8E2B5847E7009323C4 /* ImageLoader.swift */; };
 		1B037D912B58CBDB009323C4 /* DetailMovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B037D902B58CBDB009323C4 /* DetailMovieManager.swift */; };
+		FF2FF7B92B591B0600C22239 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FF7B82B591B0600C22239 /* UserModel.swift */; };
+		FF2FF7BB2B591C1D00C22239 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FF7BA2B591C1D00C22239 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		1B037D8B2B58362E009323C4 /* MovieListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListManager.swift; sourceTree = "<group>"; };
 		1B037D8E2B5847E7009323C4 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		1B037D902B58CBDB009323C4 /* DetailMovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieManager.swift; sourceTree = "<group>"; };
+		FF2FF7B82B591B0600C22239 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FF2FF7BA2B591C1D00C22239 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				1B037D282B54FA22009323C4 /* MainViewController.swift */,
+				FF2FF7BA2B591C1D00C22239 /* SignUpViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 			children = (
 				1B037D452B552082009323C4 /* MovieAPIModel.swift */,
 				1B037D4F2B562B8E009323C4 /* DetailMovieAPIModel.swift */,
+				FF2FF7B82B591B0600C22239 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,11 +397,13 @@
 				1B037D8F2B5847E7009323C4 /* ImageLoader.swift in Sources */,
 				1B037D5B2B567B8D009323C4 /* PointButton.swift in Sources */,
 				1B037D672B576B0B009323C4 /* SignUserView.swift in Sources */,
+				FF2FF7B92B591B0600C22239 /* UserModel.swift in Sources */,
 				1B037D442B551D40009323C4 /* MovieAPI.swift in Sources */,
 				1B037D702B577DAA009323C4 /* PaymentView.swift in Sources */,
 				1B037D4E2B5612B8009323C4 /* NBCAMPMovieTeam1++Bundle.swift in Sources */,
 				1B037D502B562B8E009323C4 /* DetailMovieAPIModel.swift in Sources */,
 				1B037D642B576AC8009323C4 /* MypageViewController.swift in Sources */,
+				FF2FF7BB2B591C1D00C22239 /* SignUpViewController.swift in Sources */,
 				1B037D852B580139009323C4 /* SearchViewController.swift in Sources */,
 				1B037D522B562CB0009323C4 /* DetailMovieAPI.swift in Sources */,
 				1B037D462B552082009323C4 /* MovieAPIModel.swift in Sources */,
