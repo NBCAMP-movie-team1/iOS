@@ -8,13 +8,17 @@
 import Foundation
 
 class SearchManager{
-    var filteredArr: [String] = []
+    var filteredArr: [MovieList] = []
     func fetchData(text: String, completionHandler: @escaping() -> Void) {
         MovieRequest.searchMovieRequest(text, page: 1) { result in
             switch result {
             case .success(let movies):
-                self.filteredArr = movies.map { $0.title.lowercased() }.filter { $0.contains(text) }
-                print("\n")
+                self.filteredArr = movies.map {
+                    MovieList(title: $0.title, imagePath: $0.posterPath!, popularity: $0.popularity)
+                }.filter { $0.title.lowercased().contains(text.lowercased()) }
+                self.filteredArr.sort{ $0.popularity > $1.popularity }
+                print(self.filteredArr)
+                
                 if self.filteredArr.isEmpty {
                     print("똑바로 적어")
                 } else {
