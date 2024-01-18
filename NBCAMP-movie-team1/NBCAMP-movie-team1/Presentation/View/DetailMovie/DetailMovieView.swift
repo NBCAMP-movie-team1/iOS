@@ -9,6 +9,8 @@ import UIKit
 
 class DetailMovieView: UIView {
     
+    private var data: MovieInfo?
+    
     // MARK: - UI Properties
     
     private let posterImageView: UIImageView = {
@@ -21,34 +23,35 @@ class DetailMovieView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "title"
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 30)
-        label.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.numberOfLines = 0
         
         return label
     }()
     
     private let releaseDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "releaseDate"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
-        label.heightAnchor.constraint(lessThanOrEqualToConstant: 30).isActive = true
         
         return label
     }()
     
     private let discriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "discription discription discription discription discription discription discription discription discription discription discription discription discription discription discription discription discription disc"
         label.textAlignment = .center
         label.numberOfLines = 0
         
         return label
     }()
     
-    let bookNowButton: UIButton = PointButton(title: "예매하기")
+    let bookNowButton: UIButton = {
+        let button = PointButton(title: "예매하기")
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+
+        return button
+    }()
     
     // MARK: - Life Cycle
     
@@ -63,6 +66,16 @@ class DetailMovieView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setData(_ data: MovieInfo) {
+        DispatchQueue.main.async {
+            let link = "https://image.tmdb.org/t/p/w500\(data.posterPath!)"
+            ImageLoader.loadImage(from: link, into: self.posterImageView)
+            
+            self.titleLabel.text = data.title
+            self.releaseDateLabel.text = "Release : \(String(describing: data.releaseDate))"
+            self.discriptionLabel.text = data.overview
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -79,30 +92,56 @@ extension DetailMovieView {
         stackView.distribution = .fill
         stackView.spacing = 15
         
-        [posterImageView, titleLabel, releaseDateLabel, discriptionLabel, bookNowButton].forEach {
+        [posterImageView, titleLabel, releaseDateLabel, discriptionLabel].forEach {
             stackView.addArrangedSubview($0)
         }
         
-        self.addSubview(stackView)
-
-        setAutoLayout(stackView)
+        let descriptionScrollView = UIScrollView()
+        descriptionScrollView.addSubview(discriptionLabel)
+        stackView.addArrangedSubview(descriptionScrollView)
+        
+        [stackView, bookNowButton].forEach {
+            self.addSubview($0)
+        }
+        
+        setAutoLayout(stackView, descriptionScrollView)
     }
     
     // MARK: - Auto Layout
     
-    private func setAutoLayout(_ stackView: UIStackView) {
+    private func setAutoLayout(_ stackView: UIStackView, _ descriptionScrollView: UIScrollView) {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
         
         posterImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             posterImageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.5)
         ])
+        
+        descriptionScrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            descriptionScrollView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.3),
+        ])
+        
+        discriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            discriptionLabel.topAnchor.constraint(equalTo: descriptionScrollView.topAnchor, constant: 15),
+            discriptionLabel.leadingAnchor.constraint(equalTo: descriptionScrollView.leadingAnchor),
+            discriptionLabel.trailingAnchor.constraint(equalTo: descriptionScrollView.trailingAnchor),
+            discriptionLabel.bottomAnchor.constraint(equalTo: descriptionScrollView.bottomAnchor),
+            discriptionLabel.widthAnchor.constraint(equalTo: descriptionScrollView.widthAnchor)
+        ])
+        
+        bookNowButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bookNowButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15),
+            bookNowButton.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            bookNowButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            bookNowButton.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
-    
 }

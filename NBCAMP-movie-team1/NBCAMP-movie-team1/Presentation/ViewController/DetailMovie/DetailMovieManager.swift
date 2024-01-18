@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailMovieManager {
-    func fetchData(_ movieId: Int, completion: @escaping (DetailMovie) -> Void) {
+    func fetchData(_ movieId: Int, completion: @escaping (MovieInfo) -> Void) {
         DetailMovieRequest.detailMovieRequest(movieId) { result in
             switch result {
             case .success(let movie):

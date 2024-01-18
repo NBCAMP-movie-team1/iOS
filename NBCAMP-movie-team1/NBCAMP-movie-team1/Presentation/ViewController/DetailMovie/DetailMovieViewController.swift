@@ -9,8 +9,10 @@ import UIKit
 
 class DetailMovieViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private let movieId: Int
-    private var data: DetailMovie?
+    private var data: MovieInfo?
     private let detailMovieManager = DetailMovieManager()
     
     // MARK: - UI Properties
@@ -52,13 +54,15 @@ extension DetailMovieViewController {
     private func setUI() {
         view.backgroundColor = .white
         detailMovieView.bookNowButton.addTarget(self, action: #selector(goToPaymentButton), for: .touchUpInside)
+        
+        view.addSubview(detailMovieView)
     }
     
     private func setLayout() {
-        view.addSubview(detailMovieView)
-        
         detailMovieView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
+            
             detailMovieView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             detailMovieView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             detailMovieView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
@@ -71,6 +75,7 @@ extension DetailMovieViewController {
     private func fetchDetailData() {
         detailMovieManager.fetchData(movieId) { movie in
             self.data = movie
+            self.detailMovieView.setData(movie)
         }
     }
 }
