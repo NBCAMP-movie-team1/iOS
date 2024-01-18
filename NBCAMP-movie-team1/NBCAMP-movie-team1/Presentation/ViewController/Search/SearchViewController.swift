@@ -64,10 +64,17 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
         
         return CGSize(width: widthPerItem, height: cellHeight)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let searchMovie = searchManager.filteredArr[indexPath.row]
+        let detailView = DetailMovieViewController(movieId: searchMovie.id)
+        
+        navigationController?.pushViewController(detailView, animated: true)
+    }
 }
+
 extension SearchViewController: UISearchControllerDelegate {
     func willDismissSearchController(_ searchController: UISearchController) {
-        // 취소 버튼이 눌릴 때 호출되는 메서드
         searchManager.filteredArr.removeAll()
         customCollectionView.reloadData()
     }
