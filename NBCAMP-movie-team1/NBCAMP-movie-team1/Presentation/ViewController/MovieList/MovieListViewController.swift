@@ -17,6 +17,8 @@ class MovieListViewController: UIViewController {
     
     // MARK: - UI Properties
     
+    let searchViewController = SearchViewController()
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +48,14 @@ class MovieListViewController: UIViewController {
         return nowPlayingView
     }()
     
+    private lazy var searchButton: UIBarButtonItem = {
+        let magnifyingGlassImage = UIImage(systemName: "magnifyingglass")
+        let button = UIBarButtonItem(image: magnifyingGlassImage, style: .plain, target: self, action: #selector(goToSearchViewController))
+        button.tintColor = .systemGray
+        
+        return button
+    }()
+    
     private let movieListManager = MovieListManager()
     
     // MARK: - Life Cycle
@@ -64,18 +74,33 @@ class MovieListViewController: UIViewController {
         setUI()
         setLayout()
         setDelegate()
-    
+        setNavigationItem()
         fetchMovieListData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+// MARK: - Navigation
+
+extension MovieListViewController {
+    func setNavigationItem() {
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = searchButton
+    }
+    
+    @objc private func goToSearchViewController() {
+        let transition = CATransition()
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromTop
+        transition.duration = 0.1
+
+        self.navigationController?.view.layer.add(transition, forKey: kCATransition)
+
+        self.navigationController?.pushViewController(searchViewController, animated: false)
     }
 }
 
