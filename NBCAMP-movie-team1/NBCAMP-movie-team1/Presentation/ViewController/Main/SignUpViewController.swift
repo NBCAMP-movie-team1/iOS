@@ -94,7 +94,11 @@ class SignUpViewController: UIViewController {
 
         let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
             // Alert 창의 확인 버튼을 눌렀을 때 수행할 동작
-            self?.dismiss(animated: true, completion: nil) // 현재 뷰 컨트롤러를 닫음 (pop)
+            if let navigationController = self?.navigationController {
+                navigationController.popViewController(animated: true)
+            } else {
+                self?.dismiss(animated: true, completion: nil)
+            }
         }
 
         alertController.addAction(okAction)

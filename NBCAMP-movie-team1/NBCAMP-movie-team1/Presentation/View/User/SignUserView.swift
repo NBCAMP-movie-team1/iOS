@@ -11,6 +11,11 @@ class SignUserView: UIView {
     
     // MARK: - UI Properties
 
+    let logoImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "LogoImage"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     let usernameTextField: UITextField = {
         let textField = UITextField()
@@ -63,7 +68,7 @@ extension SignUserView {
     
     private func setLayout() {
         
-        let stackView = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField, loginButton, signUpButton])
+        let stackView = UIStackView(arrangedSubviews: [logoImageView, usernameTextField, passwordTextField, loginButton, signUpButton])
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
