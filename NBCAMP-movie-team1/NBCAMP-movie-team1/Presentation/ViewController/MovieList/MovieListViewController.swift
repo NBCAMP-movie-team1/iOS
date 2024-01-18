@@ -9,6 +9,12 @@ import UIKit
 
 class MovieListViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var nowPlayingList: [MovieList] = []
+    private var popularList: [MovieList] = []
+    private var topRatedList: [MovieList] = []
+    
     // MARK: - UI Properties
     
     private lazy var scrollView: UIScrollView = {
@@ -19,17 +25,39 @@ class MovieListViewController: UIViewController {
     
     private lazy var stackView: UIStackView = { createStackView() }()
     
-    let nowPlayingView = MovieListCollectionView(sectionTitle: "Now Playing")
-    let popularView = MovieListCollectionView(sectionTitle: "Popular")
-    let topRatedView = MovieListCollectionView(sectionTitle: "Top Rated")
+    private lazy var nowPlayingView: MovieListCollectionView = {
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "Now Playing")
+        nowPlayingView.movieList = nowPlayingList
+        
+        return nowPlayingView
+    }()
     
-    let detailMovieViewController: DetailMovieViewController
+    private lazy var popularView: MovieListCollectionView = {
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "Popular")
+        nowPlayingView.movieList = popularList
+        
+        return nowPlayingView
+    }()
+    
+    private lazy var topRatedView: MovieListCollectionView = {
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "Top Rated")
+        nowPlayingView.movieList = topRatedList
+        
+        return nowPlayingView
+    }()
+    
+    private let detailMovieViewController: DetailMovieViewController
+    private let movieListManager = MovieListManager()
     
     // MARK: - Life Cycle
     
     init(detailMovieViewController: DetailMovieViewController) {
         self.detailMovieViewController = detailMovieViewController
         super.init(nibName: nil, bundle: nil)
+        
+        nowPlayingView.movieList = nowPlayingList
+        popularView.movieList = popularList
+        topRatedView.movieList = topRatedList
     }
     
     override func viewDidLoad() {
@@ -37,6 +65,31 @@ class MovieListViewController: UIViewController {
         
         setUI()
         setLayout()
+    
+        fetchDataForNowPlaying()
+    }
+    
+    func fetchDataForNowPlaying() {
+        movieListManager.fetchData("now_playing") { movieList in
+            DispatchQueue.main.async {
+                self.nowPlayingList = movieList
+                self.nowPlayingView.updateMovieList(movieList)
+            }
+        }
+        
+        movieListManager.fetchData("popular") { movieList in
+            DispatchQueue.main.async {
+                self.popularList = movieList
+                self.popularView.updateMovieList(movieList)
+            }
+        }
+        
+        movieListManager.fetchData("top_rated") { movieList in
+            DispatchQueue.main.async {
+                self.topRatedList = movieList
+                self.topRatedView.updateMovieList(movieList)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,20 +127,20 @@ extension MovieListViewController {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3/8),
-            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3/8),
-            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3/8)
+            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10),
+            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10),
+            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10)
         ])
     }
     
