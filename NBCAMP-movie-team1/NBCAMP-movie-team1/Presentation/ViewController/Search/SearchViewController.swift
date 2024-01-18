@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchViewController: UIViewController{
-    var customCollectionView: CustomCollectionView! //
+    var customCollectionView: CustomCollectionView!
     var searchManager = SearchManager()
     
     override func viewDidLoad() {
@@ -34,25 +34,35 @@ class SearchViewController: UIViewController{
         customCollectionView.backgroundColor = .clear
         self.view.addSubview(customCollectionView)
         customCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
-        customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         customCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
-        customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 }
 
-extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSource {
+extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return searchManager.filteredArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let searchList = searchManager.filteredArr[indexPath.row]
         let cell = customCollectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as! CollectionViewCell
-        cell.tltieLabel.text = searchManager.filteredArr[indexPath.row]
+        let link = "https://image.tmdb.org/t/p/w500\(searchList.imagePath)"
+        ImageLoader.loadImage(from: link, into: cell.titleImage)
+        cell.titleLabel.text = searchList.title
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        let cellWidth = collectionView.bounds.size.width * 0.5
+        let cellHeight = cellWidth * 1.7
+        let lay = collectionViewLayout as! UICollectionViewFlowLayout
+
+        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+
+        
+        return CGSize(width: widthPerItem, height: cellHeight)
     }
 }
 
