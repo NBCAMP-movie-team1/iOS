@@ -9,15 +9,21 @@ import UIKit
 
 class DetailMovieViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private let movieId: Int
+    private var data: MovieInfo?
+    private let detailMovieManager = DetailMovieManager()
+    
     // MARK: - UI Properties
     
     let detailMovieView = DetailMovieView()
-    let paymentViewController: PaymentViewController
     
     // MARK: - Life Cycle
     
-    init(paymentViewController: PaymentViewController) {
-        self.paymentViewController = paymentViewController
+    init(movieId: Int) {
+        self.movieId = movieId
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,6 +38,8 @@ class DetailMovieViewController: UIViewController {
         
         setUI()
         setLayout()
+        
+        fetchDetailData()
     }
     
 }
@@ -40,23 +48,34 @@ class DetailMovieViewController: UIViewController {
 
 extension DetailMovieViewController {
     @objc private func goToPaymentButton() {
-        self.navigationController?.pushViewController(paymentViewController, animated: true)
+        print("결제화면으로 화면 전환")
     }
     
     private func setUI() {
         view.backgroundColor = .white
         detailMovieView.bookNowButton.addTarget(self, action: #selector(goToPaymentButton), for: .touchUpInside)
+        
+        view.addSubview(detailMovieView)
     }
     
     private func setLayout() {
-        view.addSubview(detailMovieView)
-        
         detailMovieView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
+            
             detailMovieView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             detailMovieView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             detailMovieView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             detailMovieView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
+    }
+}
+
+extension DetailMovieViewController {
+    private func fetchDetailData() {
+        detailMovieManager.fetchData(movieId) { movie in
+            self.data = movie
+            self.detailMovieView.setData(movie)
+        }
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 final class DetailMovieRequest {
-    static func detailMovieRequest(_ movieId: Int, completion: @escaping (Result<DetailMovie, Error>) -> Void) {
+    static func detailMovieRequest(_ movieId: Int, completion: @escaping (Result<MovieInfo, Error>) -> Void) {
         let apiKey = Bundle.main.apiKey
         
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?language=en-US")!
@@ -23,15 +23,13 @@ final class DetailMovieRequest {
             if let error = error {
                 completion(.failure(error))
                 return
-            }else if let httpResponse = response as? HTTPURLResponse {
+            } else if let httpResponse = response as? HTTPURLResponse {
                 print("Status Code: \(httpResponse.statusCode)")
                 
                 if let data = data {
                     do {
-                        let decoder = JSONDecoder()
-                        decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let movie = try decoder.decode(DetailMovie.self, from: data)
-                        completion(.success(movie))
+                        let movieInfo = try JSONDecoder().decode(MovieInfo.self, from: data)
+                        completion(.success(movieInfo))
                     } catch {
                         completion(.failure(error))
                     }

@@ -11,11 +11,7 @@ class MainViewController: UIViewController {
     
     // MARK: - UI Properties
     
-    lazy var movieListViewController = MovieListViewController(detailMovieViewController: detailMovieViewController)
-    lazy var detailMovieViewController = DetailMovieViewController(paymentViewController: paymentViewController)
-    let detailMovieView = DetailMovieView()
-    let paymentViewController = PaymentViewController()
-    let mypageViewController = MypageViewController()
+    lazy var movieListViewController = MovieListViewController()
     
     let signUserView = SignUserView()
     
