@@ -50,20 +50,27 @@ extension MainViewController {
     }
     
     @objc func loginButtonTapped() {
-        guard let username = signUserView.usernameTextField.text,
-              let password = signUserView.passwordTextField.text else {
+        guard let inputUsername = signUserView.usernameTextField.text,
+              let inputPassword = signUserView.passwordTextField.text else {
             return
         }
 
-        // 여기에서 UserModel을 사용하여 로그인을 처리하는 로직을 작성
-        if true {
-            // 로그인 성공 시에 다음 로직을 추가할 수 있습니다.
-            print("로그인 성공")
-            self.navigationController?.pushViewController(movieListViewController, animated: true)
-        } else {
-            // 로그인 실패 처리
-            print("로그인 실패")
+        let savedUsername = UserDefaults.standard.string(forKey: "username")
+        let savedPassword = UserDefaults.standard.string(forKey: "password")
+
+        // 아이디와 비밀번호가 모두 저장되어 있을 때만 비교합니다.
+        if let savedUsername = savedUsername, let savedPassword = savedPassword {
+            // 로그인을 처리하는 로직
+            if savedUsername == inputUsername && savedPassword == inputPassword  {
+                // 로그인 성공 시에 다음 로직을 추가할 수 있습니다.
+                print("로그인 성공")
+                self.navigationController?.pushViewController(movieListViewController, animated: true)
+            } else {
+                // 로그인 실패 처리
+                print("로그인 실패")
+            }
         }
+
     }
 
     @objc func signUpButtonTapped() {
@@ -101,4 +108,7 @@ extension MainViewController {
             signUserView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
     }
+    
+    
+    
 }
