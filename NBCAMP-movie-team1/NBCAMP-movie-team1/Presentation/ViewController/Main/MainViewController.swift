@@ -22,6 +22,22 @@ class MainViewController: UIViewController {
         
         setUI()
         setLayout()
+        
+        
+        let imageView = UIImageView(image: UIImage(named: "LogoImage"))
+               imageView.contentMode = .scaleAspectFit // 이미지 크기에 맞게 조정
+               imageView.translatesAutoresizingMaskIntoConstraints = false
+
+               // 뷰 컨트롤러의 뷰에 이미지뷰 추가
+               view.addSubview(imageView)
+
+               // 이미지뷰의 제약 조건 설정
+               NSLayoutConstraint.activate([
+                   imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+                   imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                   imageView.widthAnchor.constraint(equalToConstant: 200), // 이미지 크기에 따라 조절
+                   imageView.heightAnchor.constraint(equalToConstant: 90) // 이미지 크기에 따라 조절
+               ])
     }
     
 }
@@ -43,6 +59,7 @@ extension MainViewController {
         if true {
             // 로그인 성공 시에 다음 로직을 추가할 수 있습니다.
             print("로그인 성공")
+            self.navigationController?.pushViewController(movieListViewController, animated: true)
         } else {
             // 로그인 실패 처리
             print("로그인 실패")
@@ -67,10 +84,10 @@ extension MainViewController {
     private func setUI() {
         view.backgroundColor = .white
         
-//        signUserView.button.addTarget(self, action: #selector(goToMovieListButton), for: .touchUpInside)
+        //signUserView.button.addTarget(self, action: #selector(goToMovieListButton), for: .touchUpInside)
         
-        signUserView.button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        signUserView.button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        signUserView.loginButton.addTarget(self , action: #selector(loginButtonTapped), for: .touchUpInside)
+        signUserView.signUpButton.addTarget(self , action: #selector(signUpButtonTapped), for: .touchUpInside)
     }
     
     private func setLayout() {

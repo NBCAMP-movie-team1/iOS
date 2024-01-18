@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
     private let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("회원가입", for: .normal)
-        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        button.addTarget(SignUpViewController.self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         return button
     }()
 
