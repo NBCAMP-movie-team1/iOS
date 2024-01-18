@@ -10,15 +10,39 @@ import UIKit
 class SignUserView: UIView {
     
     // MARK: - UI Properties
-    
-    let testLabel: UILabel = {
-        let label = UILabel()
-        label.text = "This is SignUserView"
-        
-        return label
+
+    let logoImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "LogoImage"))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
-    let button: UIButton = PointButton(title: "로그인")
+    let usernameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "아이디를 입력하세요"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+
+    let passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "비밀번호를 입력하세요"
+        textField.isSecureTextEntry = true
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+
+    let loginButton: UIButton = {
+        let button = PointButton(title: "로그인")
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        return button
+    }()
+
+    let signUpButton: UIButton = {
+        let button = PointButton(title: "회원가입")
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        return button
+    }()
     
     // MARK: - Life Cycle
     
@@ -43,19 +67,21 @@ extension SignUserView {
     }
     
     private func setLayout() {
-        let stackView = UIStackView()
         
+        let stackView = UIStackView(arrangedSubviews: [logoImageView, usernameTextField, passwordTextField, loginButton, signUpButton])
         stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.spacing = 15
-        
-        [testLabel, button].forEach {
-            stackView.addArrangedSubview($0)
-        }
-        
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
         self.addSubview(stackView)
 
-        setAutoLayout(stackView)
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
+        ])
+        
     }
     
     // MARK: - Auto Layout
