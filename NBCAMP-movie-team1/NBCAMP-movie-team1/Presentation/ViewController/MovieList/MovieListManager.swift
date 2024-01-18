@@ -19,7 +19,7 @@ class MovieListManager {
                 self.movies = first10Movies
                 
                 let movieList: [MovieList] = first10Movies.map {
-                    return MovieList(title: $0.title, imagePath: $0.posterPath ?? "", id: $0.id)
+                    return MovieList(title: $0.title, imagePath: $0.posterPath!, id: $0.id)
                 }
                 
                 completion(movieList)

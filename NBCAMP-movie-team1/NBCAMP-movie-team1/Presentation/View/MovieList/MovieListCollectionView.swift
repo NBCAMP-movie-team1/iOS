@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol MovieListCollectionViewDelegate: AnyObject {
+    func didSelectMovie(withId movieId: Int)
+}
+
 class MovieListCollectionView: UIView {
     
     // MARK: - Properties
     
     var movieList: [MovieList] = []
+    weak var delegate: MovieListCollectionViewDelegate?
     
     // MARK: - UI Properties
     
@@ -40,13 +45,15 @@ class MovieListCollectionView: UIView {
         setLayout()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Data Update Method
+    
     func updateMovieList(_ movieList: [MovieList]) {
         self.movieList = movieList
         collectionView.reloadData()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -86,7 +93,7 @@ extension MovieListCollectionView {
 
 // MARK: - UICollectionView
 
-extension MovieListCollectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MovieListCollectionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: UICollectionViewDataSource
     
@@ -104,14 +111,16 @@ extension MovieListCollectionView: UICollectionViewDataSource, UICollectionViewD
     // MARK: UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = collectionView.bounds.size.width * 0.4
+        let cellWidth = collectionView.bounds.size.width * 0.43
         let cellHeight = cellWidth * 1.6
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
+    // MARK: UICollectionViewDelegate
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = movieList[indexPath.item]
-        print(selectedMovie.id, selectedMovie.title)
+        delegate?.didSelectMovie(withId: selectedMovie.id)
     }
 }

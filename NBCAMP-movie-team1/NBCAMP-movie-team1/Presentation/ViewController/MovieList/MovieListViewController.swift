@@ -46,13 +46,11 @@ class MovieListViewController: UIViewController {
         return nowPlayingView
     }()
     
-    private let detailMovieViewController: DetailMovieViewController
     private let movieListManager = MovieListManager()
     
     // MARK: - Life Cycle
     
-    init(detailMovieViewController: DetailMovieViewController) {
-        self.detailMovieViewController = detailMovieViewController
+    init() {
         super.init(nibName: nil, bundle: nil)
         
         nowPlayingView.movieList = nowPlayingList
@@ -65,31 +63,9 @@ class MovieListViewController: UIViewController {
         
         setUI()
         setLayout()
+        setDelegate()
     
-        fetchDataForNowPlaying()
-    }
-    
-    func fetchDataForNowPlaying() {
-        movieListManager.fetchData("now_playing") { movieList in
-            DispatchQueue.main.async {
-                self.nowPlayingList = movieList
-                self.nowPlayingView.updateMovieList(movieList)
-            }
-        }
-        
-        movieListManager.fetchData("popular") { movieList in
-            DispatchQueue.main.async {
-                self.popularList = movieList
-                self.popularView.updateMovieList(movieList)
-            }
-        }
-        
-        movieListManager.fetchData("top_rated") { movieList in
-            DispatchQueue.main.async {
-                self.topRatedList = movieList
-                self.topRatedView.updateMovieList(movieList)
-            }
-        }
+        fetchMovieListData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,10 +82,6 @@ class MovieListViewController: UIViewController {
 // MARK: - Extensions
 
 extension MovieListViewController {
-    @objc private func goToDetailMovieButton() {
-        self.navigationController?.pushViewController(detailMovieViewController, animated: true)
-    }
-    
     private func setUI() {
         view.backgroundColor = .white
         
@@ -157,5 +129,43 @@ extension MovieListViewController {
         }
         
         return stackView
+    }
+}
+
+extension MovieListViewController {
+    func fetchMovieListData() {
+        movieListManager.fetchData("now_playing") { movieList in
+            DispatchQueue.main.async {
+                self.nowPlayingList = movieList
+                self.nowPlayingView.updateMovieList(movieList)
+            }
+        }
+        
+        movieListManager.fetchData("popular") { movieList in
+            DispatchQueue.main.async {
+                self.popularList = movieList
+                self.popularView.updateMovieList(movieList)
+            }
+        }
+        
+        movieListManager.fetchData("top_rated") { movieList in
+            DispatchQueue.main.async {
+                self.topRatedList = movieList
+                self.topRatedView.updateMovieList(movieList)
+            }
+        }
+    }
+}
+
+extension MovieListViewController: MovieListCollectionViewDelegate {
+    func didSelectMovie(withId movieId: Int) {
+        let detailViewController = DetailMovieViewController(movieId: movieId)
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    func setDelegate() {
+        nowPlayingView.delegate = self
+        popularView.delegate = self
+        topRatedView.delegate = self
     }
 }

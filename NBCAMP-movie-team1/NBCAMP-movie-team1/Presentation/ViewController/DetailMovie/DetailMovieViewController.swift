@@ -9,15 +9,19 @@ import UIKit
 
 class DetailMovieViewController: UIViewController {
     
+    private let movieId: Int
+    private var data: DetailMovie?
+    private let detailMovieManager = DetailMovieManager()
+    
     // MARK: - UI Properties
     
     let detailMovieView = DetailMovieView()
-    let paymentViewController: PaymentViewController
     
     // MARK: - Life Cycle
     
-    init(paymentViewController: PaymentViewController) {
-        self.paymentViewController = paymentViewController
+    init(movieId: Int) {
+        self.movieId = movieId
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,6 +36,8 @@ class DetailMovieViewController: UIViewController {
         
         setUI()
         setLayout()
+        
+        fetchDetailData()
     }
     
 }
@@ -40,7 +46,7 @@ class DetailMovieViewController: UIViewController {
 
 extension DetailMovieViewController {
     @objc private func goToPaymentButton() {
-        self.navigationController?.pushViewController(paymentViewController, animated: true)
+        print("결제화면으로 화면 전환")
     }
     
     private func setUI() {
@@ -58,5 +64,13 @@ extension DetailMovieViewController {
             detailMovieView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             detailMovieView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
+    }
+}
+
+extension DetailMovieViewController {
+    private func fetchDetailData() {
+        detailMovieManager.fetchData(movieId) { movie in
+            self.data = movie
+        }
     }
 }
