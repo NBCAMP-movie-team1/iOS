@@ -11,6 +11,9 @@ import UIKit
 class SearchManager{
     var filteredArr: [MovieList] = []
     func fetchData(text: String, completionHandler: @escaping() -> Void) {
+        guard !text.isEmpty else {
+            return
+        }
         MovieRequest.searchMovieRequest(text, page: 1) { result in
             switch result {
             case .success(let movies):
@@ -29,7 +32,8 @@ class SearchManager{
             }
         }
     }
-    func showAlert(){
+    
+    func showAlert() {
         let alert = UIAlertController(title: "알림", message: "결과 없음", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "확인", style: .default, handler: nil)
         

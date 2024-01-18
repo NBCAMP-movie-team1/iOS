@@ -65,6 +65,14 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
         return CGSize(width: widthPerItem, height: cellHeight)
     }
 }
+extension SearchViewController: UISearchControllerDelegate {
+    func willDismissSearchController(_ searchController: UISearchController) {
+        // 취소 버튼이 눌릴 때 호출되는 메서드
+        searchManager.filteredArr.removeAll()
+        customCollectionView.reloadData()
+    }
+}
+
 
 extension SearchViewController: UISearchBarDelegate {
     func setupSearchController(for viewController: UIViewController) {
@@ -74,6 +82,7 @@ extension SearchViewController: UISearchBarDelegate {
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
         
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         
         viewController.navigationItem.searchController = searchController
         viewController.navigationItem.hidesSearchBarWhenScrolling = false
