@@ -56,7 +56,14 @@ class SignUpUserView: UIView {
         
         return textField
     }()
-
+    
+    let validationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .red
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let signUpButton: UIButton = {
         let button = PointButton(title: "회원가입")
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
@@ -86,17 +93,18 @@ extension SignUpUserView {
     }
     
     private func setLayout() {
-        let usernameStackView = UIStackView(arrangedSubviews: [logoImageView, nicknameTextField])
+
+        let usernameStackView = UIStackView(arrangedSubviews: [logoImageView, validationLabel, usernameTextField, validationLabel])
         usernameStackView.axis = .vertical
-        usernameStackView.spacing = 100
-        
-        let stackView = UIStackView(arrangedSubviews: [usernameStackView, usernameTextField, passwordTextField, signUpButton])
+        usernameStackView.spacing = 10
+
+        let stackView = UIStackView(arrangedSubviews: [usernameStackView, nicknameTextField, passwordTextField, signUpButton])
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         self.addSubview(stackView)
-        
+
         setAutoLayout(stackView)
     }
 

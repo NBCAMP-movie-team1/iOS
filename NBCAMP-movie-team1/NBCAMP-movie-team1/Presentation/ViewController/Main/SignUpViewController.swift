@@ -54,16 +54,11 @@ extension SignUpViewController {
             return
         }
 
-        // 여기에서 UserModel을 사용하여 회원가입을 처리하는 로직을 작성
-        UserModel.username = username
-        UserModel.nickname = nickname
-        UserModel.password = password
-
-        // 가입이 성공했다고 가정
+        UserListModel.addUser(username: username, password: nickname, nickname: password)
+   
         let signUpSuccessful = true
 
         if signUpSuccessful {
-            // 회원가입이 성공했을 때
             showSignUpSuccessAlert()
         }
 //        else {
