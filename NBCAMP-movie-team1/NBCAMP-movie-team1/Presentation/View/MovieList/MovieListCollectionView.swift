@@ -105,6 +105,7 @@ extension MovieListCollectionView: UICollectionViewDelegate, UICollectionViewDat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.reuseIdentifier, for: indexPath) as! MovieListCollectionViewCell
         let movie = movieList[indexPath.item]
         cell.configure(with: movie)
+        
         return cell
     }
     
@@ -112,7 +113,7 @@ extension MovieListCollectionView: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.bounds.size.width * 0.43
-        let cellHeight = cellWidth * 1.6
+        let cellHeight = collectionView.bounds.size.height * 0.9
         
         return CGSize(width: cellWidth, height: cellHeight)
     }

@@ -40,12 +40,12 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75),
-            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.75),
+            imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.78),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.78),
             
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
-            label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            label.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
         ])
     }
     
