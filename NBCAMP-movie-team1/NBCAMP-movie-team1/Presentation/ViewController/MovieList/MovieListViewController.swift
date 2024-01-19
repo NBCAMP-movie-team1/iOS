@@ -135,9 +135,9 @@ extension MovieListViewController {
         ])
         
         NSLayoutConstraint.activate([
-            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10),
-            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10),
-            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10)
+            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10),
+            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10),
+            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10)
         ])
     }
     
