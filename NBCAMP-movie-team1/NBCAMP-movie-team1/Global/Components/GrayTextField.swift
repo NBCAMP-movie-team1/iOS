@@ -17,7 +17,7 @@ final class GrayTextField: UITextField {
     override var placeholder: String? {
         didSet {
             attributedPlaceholder = NSAttributedString(
-                string: placeholder ?? "",
+                string: placeholder ?? "입력하세요",
                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
             )
         }
@@ -55,6 +55,8 @@ final class GrayTextField: UITextField {
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: frame.height))
         
         leftLabel.text = leftLabelText
+        leftLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         leftView.addSubview(leftLabel)
         
         NSLayoutConstraint.activate([

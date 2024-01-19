@@ -10,10 +10,10 @@ import UIKit
 class MainViewController: UIViewController {
     
     // MARK: - UI Properties
-    
+
     lazy var movieListViewController = MovieListViewController()
     
-    let signUserView = SignUserView()
+    let signUserView = SignInUserView()
     
     // MARK: - Life Cycle
     
@@ -91,7 +91,7 @@ extension MainViewController {
             signUserView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
             signUserView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             signUserView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            signUserView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
+            signUserView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
     
