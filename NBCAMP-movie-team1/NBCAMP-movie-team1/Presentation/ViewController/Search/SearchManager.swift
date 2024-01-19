@@ -17,7 +17,6 @@ class SearchManager{
                 self.filteredArr = movies.map {
                     MovieList(title: $0.title, imagePath: $0.posterPath ?? "", popularity: $0.popularity, id: $0.id)
                 }
-                self.filteredArr.sort { $0.popularity! > $1.popularity! }
                 completionHandler()
             case .failure(let error):
                 print("Error: \(error)")

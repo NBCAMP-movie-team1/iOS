@@ -39,15 +39,15 @@ class CollectionViewCell: UICollectionViewCell{
     
     func setLayout() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: titleImage.bottomAnchor, constant:-25),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.rightAnchor.constraint(equalTo: titleImage.rightAnchor),
-            
             titleImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleImage.topAnchor.constraint(equalTo: topAnchor),
             titleImage.widthAnchor.constraint(equalTo: widthAnchor),
             titleImage.heightAnchor.constraint(equalTo: heightAnchor),
             titleImage.rightAnchor.constraint(equalTo: rightAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: titleImage.bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.rightAnchor.constraint(equalTo: titleImage.rightAnchor),
         ])
     }
 }

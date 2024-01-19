@@ -21,12 +21,10 @@ class SearchViewController: UIViewController{
         collectionViewDelegate()
         registerCollectionView()
         
-        if searchManager.filteredArr.isEmpty {
-            searchManager.fetchPopularMovies {
-                DispatchQueue.main.async {
-                    self.customCollectionView.reloadData()
-                    self.sectionLabel.isHidden = false
-                }
+        searchManager.fetchPopularMovies {
+            DispatchQueue.main.async {
+                self.customCollectionView.reloadData()
+                self.sectionLabel.isHidden = false
             }
         }
     }
@@ -35,7 +33,7 @@ class SearchViewController: UIViewController{
         sectionLabel = MovieSectionLabel(text: "추천 영화")
         sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sectionLabel)
-        sectionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 110).isActive = true
+        sectionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         sectionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         sectionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
@@ -54,10 +52,10 @@ class SearchViewController: UIViewController{
         customCollectionView.translatesAutoresizingMaskIntoConstraints = false
         customCollectionView.backgroundColor = .clear
         self.view.addSubview(customCollectionView)
-        customCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
-        customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        customCollectionView.topAnchor.constraint(equalTo: sectionLabel.bottomAnchor).isActive = true
+        customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         customCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 }
 
@@ -77,13 +75,13 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.bounds.size.width * 0.5
-        let cellHeight = cellWidth * 1.7
+        let cellHeight = cellWidth * 1.3
         let lay = collectionViewLayout as! UICollectionViewFlowLayout
-        
-        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
-        
-        
-        return CGSize(width: widthPerItem, height: cellHeight)
+        lay.minimumLineSpacing = 70
+        lay.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 70, right: 0)
+        lay.minimumInteritemSpacing = 0
+
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -100,9 +98,10 @@ extension SearchViewController: UISearchControllerDelegate {
             DispatchQueue.main.async {
                 self.sectionLabel.text = "추천 목록"
                 self.customCollectionView.reloadData()
+                let indexPath = IndexPath(item: 0, section: 0)
+                self.customCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
             }
         }
-        customCollectionView.reloadData()
     }
 }
 
@@ -130,10 +129,11 @@ extension SearchViewController: UISearchBarDelegate {
             }
         }
         self.sectionLabel.text = "추천 목록"
+        let indexPath = IndexPath(item: 0, section: 0)
+        self.customCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
         if let searchController = navigationItem.searchController {
             searchController.searchBar.text = ""
         }
-        customCollectionView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
@@ -144,5 +144,7 @@ extension SearchViewController: UISearchBarDelegate {
             }
         }
         self.sectionLabel.text = "검색 목록"
+        let indexPath = IndexPath(item: 0, section: 0)
+        self.customCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
     }
 }
