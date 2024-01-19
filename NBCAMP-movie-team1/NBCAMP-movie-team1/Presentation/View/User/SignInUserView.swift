@@ -1,5 +1,5 @@
 //
-//  SignUserView.swift
+//  SignInUserView.swift
 //  NBCAMP-movie-team1
 //
 //  Created by t2023-m0035 on 1/17/24.
@@ -7,13 +7,18 @@
 
 import UIKit
 
-class SignUserView: UIView {
+class SignInUserView: UIView {
     
     // MARK: - UI Properties
-
-    let logoImageView: UIImageView = {
+    
+    private let logoImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "LogoImage"))
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: 40 * 1.5)
+        ])
+        
         return imageView
     }()
     
@@ -62,40 +67,36 @@ class SignUserView: UIView {
 
 // MARK: - Extensions
 
-extension SignUserView {
+extension SignInUserView {
     private func setUI() {
         self.backgroundColor = .white
     }
     
     private func setLayout() {
+        let usernameStackView = UIStackView(arrangedSubviews: [logoImageView, usernameTextField])
+        usernameStackView.axis = .vertical
+        usernameStackView.spacing = 100
         
-        let stackView = UIStackView(arrangedSubviews: [logoImageView, usernameTextField, passwordTextField, loginButton, signUpButton])
+        let stackView = UIStackView(arrangedSubviews: [usernameStackView, passwordTextField, loginButton, signUpButton])
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         self.addSubview(stackView)
-
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        ])
         
+        setAutoLayout(stackView)
     }
-    
+
     // MARK: - Auto Layout
-    
+
     private func setAutoLayout(_ stackView: UIStackView) {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.topAnchor),
+            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor),
         ])
     }
-    
 }

@@ -24,7 +24,7 @@ class DetailMovieView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 0
         
         return label
@@ -33,7 +33,8 @@ class DetailMovieView: UIView {
     private let releaseDateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = .systemGray
         
         return label
     }()
@@ -68,11 +69,16 @@ class DetailMovieView: UIView {
     
     func setData(_ data: MovieInfo) {
         DispatchQueue.main.async {
-            let link = "https://image.tmdb.org/t/p/w500\(data.posterPath!)"
+            var link: String = ""
+            if data.posterPath != nil {
+                link = "https://image.tmdb.org/t/p/w500\(data.posterPath!)"
+            } else {
+                link = "https://via.placeholder.com/100x130"
+            }
             ImageLoader.loadImage(from: link, into: self.posterImageView)
             
             self.titleLabel.text = data.title
-            self.releaseDateLabel.text = "Release : \(String(describing: data.releaseDate))"
+            self.releaseDateLabel.text = "개봉일 : \(String(describing: data.releaseDate))"
             self.discriptionLabel.text = data.overview
         }
     }

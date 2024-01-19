@@ -5,68 +5,52 @@
 //  Created by t2023-m0051 on 1/16/24.
 //
 
-import Foundation
 import UIKit
 
 class SignUpViewController: UIViewController {
     
-    private let usernameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "아이디를 입력하세요"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-
-    private let nicknameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "닉네임을 입력하세요"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "비밀번호를 입력하세요"
-        textField.isSecureTextEntry = true
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-
-    private let signUpButton: UIButton = {
-        let button =  PointButton(title: "회원가입")
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    // MARK: - UI Properties
     
+    let signUpUserView = SignUpUserView()
     
-
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        
+        setUI()
+        setLayout()
     }
+    
+}
 
-    private func configureUI() {
+// MARK: - Extensions
+
+extension SignUpViewController {
+    private func setUI() {
         view.backgroundColor = .white
-
-        let stackView = UIStackView(arrangedSubviews: [usernameTextField, nicknameTextField, passwordTextField, signUpButton])
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(stackView)
-
+            
+        signUpUserView.signUpButton.addTarget(self , action: #selector(userDefaultButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setLayout() {
+        view.addSubview(signUpUserView)
+        
+        signUpUserView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            signUpUserView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            signUpUserView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            signUpUserView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            signUpUserView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
+}
 
-    @objc private func signUpButtonTapped() {
-        guard let username = usernameTextField.text,
-              let nickname = nicknameTextField.text,
-              let password = passwordTextField.text else {
+extension SignUpViewController {
+    @objc private func userDefaultButtonTapped() {
+        guard let username = signUpUserView.usernameTextField.text,
+              let nickname = signUpUserView.nicknameTextField.text,
+              let password = signUpUserView.passwordTextField.text else {
             return
         }
 
@@ -81,38 +65,39 @@ class SignUpViewController: UIViewController {
         if signUpSuccessful {
             // 회원가입이 성공했을 때
             showSignUpSuccessAlert()
-        } else {
-            // 회원가입이 실패했을 때
-            showSignUpFailureAlert()
         }
+//        else {
+//            // 회원가입이 실패했을 때
+//            showSignUpFailureAlert()
+//        }
         
     }
     
-
-    private func showSignUpSuccessAlert() {
-        let alertController = UIAlertController(title: "가입 완료", message: "회원가입이 성공적으로 완료되었습니다.", preferredStyle: .alert)
-
-        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
-            // Alert 창의 확인 버튼을 눌렀을 때 수행할 동작
-            if let navigationController = self?.navigationController {
-                navigationController.popViewController(animated: true)
-            } else {
-                self?.dismiss(animated: true, completion: nil)
+        private func showSignUpSuccessAlert() {
+            let alertController = UIAlertController(title: "가입 완료", message: "회원가입이 성공적으로 완료되었습니다.", preferredStyle: .alert)
+    
+            let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+                // Alert 창의 확인 버튼을 눌렀을 때 수행할 동작
+                if let navigationController = self?.navigationController {
+                    navigationController.popViewController(animated: true)
+                } else {
+                    self?.dismiss(animated: true, completion: nil)
+                }
             }
+    
+            alertController.addAction(okAction)
+    
+            present(alertController, animated: true, completion: nil)
         }
-
-        alertController.addAction(okAction)
-
-        present(alertController, animated: true, completion: nil)
-    }
-
-    private func showSignUpFailureAlert() {
-        let alertController = UIAlertController(title: "가입 실패", message: "회원가입 중에 문제가 발생했습니다.", preferredStyle: .alert)
-
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-
-        alertController.addAction(okAction)
-
-        present(alertController, animated: true, completion: nil)
-    }
+    
+        private func showSignUpFailureAlert() {
+            let alertController = UIAlertController(title: "가입 실패", message: "회원가입 중에 문제가 발생했습니다.", preferredStyle: .alert)
+    
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+    
+            alertController.addAction(okAction)
+    
+            present(alertController, animated: true, completion: nil)
+        }
+    
 }

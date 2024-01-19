@@ -27,6 +27,15 @@ class MovieListViewController: UIViewController {
     
     private lazy var stackView: UIStackView = { createStackView() }()
     
+    private let mainLogo: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "LogoImage"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        return imageView
+    }()
+    
     private lazy var nowPlayingView: MovieListCollectionView = {
         let nowPlayingView = MovieListCollectionView(sectionTitle: "Now Playing")
         nowPlayingView.movieList = nowPlayingList
@@ -76,6 +85,7 @@ class MovieListViewController: UIViewController {
         setDelegate()
         setNavigationItem()
         fetchMovieListData()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -90,6 +100,7 @@ extension MovieListViewController {
     func setNavigationItem() {
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItem = searchButton
+        self.navigationItem.titleView = mainLogo
     }
     
     @objc private func goToSearchViewController() {
@@ -135,9 +146,9 @@ extension MovieListViewController {
         ])
         
         NSLayoutConstraint.activate([
-            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10),
-            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10),
-            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4/10)
+            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10),
+            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10),
+            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10)
         ])
     }
     
