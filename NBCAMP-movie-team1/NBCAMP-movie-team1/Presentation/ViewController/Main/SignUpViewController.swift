@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class SignUpViewController: UIViewController {
     
     // MARK: - UI Properties
@@ -31,7 +30,7 @@ extension SignUpViewController {
     private func setUI() {
         view.backgroundColor = .white
             
-        signUpUserView.signUpButton.addTarget(self , action: #selector(signUpButtonTapped), for: .touchUpInside)
+        signUpUserView.signUpButton.addTarget(self , action: #selector(userDefaultButtonTapped), for: .touchUpInside)
     }
     
     private func setLayout() {
@@ -48,7 +47,7 @@ extension SignUpViewController {
 }
 
 extension SignUpViewController {
-    @objc private func signUpButtonTapped() {
+    @objc private func userDefaultButtonTapped() {
         guard let username = signUpUserView.usernameTextField.text,
               let nickname = signUpUserView.nicknameTextField.text,
               let password = signUpUserView.passwordTextField.text else {
