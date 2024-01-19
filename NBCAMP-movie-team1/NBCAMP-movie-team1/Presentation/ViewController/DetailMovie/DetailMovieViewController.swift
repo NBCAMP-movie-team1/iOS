@@ -19,6 +19,15 @@ class DetailMovieViewController: UIViewController {
     
     let detailMovieView = DetailMovieView()
     
+    private let mainLogo: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "LogoImage"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        return imageView
+    }()
+    
     // MARK: - Life Cycle
     
     init(movieId: Int) {
@@ -53,6 +62,7 @@ extension DetailMovieViewController {
     
     private func setUI() {
         view.backgroundColor = .white
+        self.navigationItem.titleView = mainLogo
         detailMovieView.bookNowButton.addTarget(self, action: #selector(goToPaymentButton), for: .touchUpInside)
         
         view.addSubview(detailMovieView)

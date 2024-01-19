@@ -14,6 +14,7 @@ class SignUpViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "아이디를 입력하세요"
         textField.borderStyle = .roundedRect
+        
         return textField
     }()
 
@@ -21,20 +22,22 @@ class SignUpViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "닉네임을 입력하세요"
         textField.borderStyle = .roundedRect
+        
         return textField
     }()
     private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "비밀번호를 입력하세요"
         textField.isSecureTextEntry = true
+        
         textField.borderStyle = .roundedRect
         return textField
     }()
 
     private let signUpButton: UIButton = {
-        let button =  PointButton(title: "회원가입")
+        let button = PointButton(title: "회원가입")
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+
         return button
     }()
     
@@ -43,6 +46,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
     }
 
     private func configureUI() {
