@@ -13,7 +13,8 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.backgroundColor = .systemGray6
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -33,20 +34,7 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        [imageView, label].forEach {
-            addSubview($0)
-        }
-        
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.78),
-            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.78),
-            
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
-        ])
+        setUI() // setUI 메서드 호출
     }
     
     required init?(coder: NSCoder) {
@@ -57,5 +45,24 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         let link = "https://image.tmdb.org/t/p/w500\(movie.imagePath)"
         ImageLoader.loadImage(from: link, into: self.imageView)
         label.text = movie.title
+    }
+}
+
+extension MovieListCollectionViewCell {
+    private func setUI() {
+        let stackView = UIStackView(arrangedSubviews: [imageView, label])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(stackView) // contentView에 추가
+
+        // 스택뷰 제약 조건 설정
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
 }
