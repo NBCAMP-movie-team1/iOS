@@ -13,7 +13,7 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .systemGray6
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
