@@ -13,7 +13,7 @@ class CollectionViewCell: UICollectionViewCell{
         let titleLabel = UILabel()
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.font = UIFont.systemFont(ofSize: 17)
         titleLabel.numberOfLines = 0
         return titleLabel
     }()
@@ -39,14 +39,15 @@ class CollectionViewCell: UICollectionViewCell{
     
     func setLayout() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: titleImage.bottomAnchor),
+            titleLabel.topAnchor.constraint(equalTo: titleImage.bottomAnchor, constant:-25),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.rightAnchor.constraint(equalTo: titleImage.rightAnchor),
             
             titleImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleImage.topAnchor.constraint(equalTo: topAnchor),
-            titleImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
-            titleImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.83),
+            titleImage.widthAnchor.constraint(equalTo: widthAnchor),
+            titleImage.heightAnchor.constraint(equalTo: heightAnchor),
+            titleImage.rightAnchor.constraint(equalTo: rightAnchor),
         ])
     }
 }

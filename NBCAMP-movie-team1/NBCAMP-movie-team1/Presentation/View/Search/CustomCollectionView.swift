@@ -21,5 +21,6 @@ class CustomCollectionView: UICollectionView{
     private func commonInit() {
         backgroundColor = .clear
     }
+    
 }
 

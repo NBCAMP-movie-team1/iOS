@@ -17,6 +17,14 @@ class SearchViewController: UIViewController{
         setupSearchController(for: self)
         collectionViewDelegate()
         registerCollectionView()
+        
+        if searchManager.filteredArr.isEmpty {
+            searchManager.fetchPopularMovies {
+                DispatchQueue.main.async {
+                    self.customCollectionView.reloadData()
+                }
+            }
+        }
     }
     
     func registerCollectionView() {
@@ -35,8 +43,8 @@ class SearchViewController: UIViewController{
         self.view.addSubview(customCollectionView)
         customCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
         customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        customCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
-        customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        customCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
 }
 
@@ -75,7 +83,11 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
 
 extension SearchViewController: UISearchControllerDelegate {
     func willDismissSearchController(_ searchController: UISearchController) {
-        searchManager.filteredArr.removeAll()
+        searchManager.fetchPopularMovies {
+            DispatchQueue.main.async {
+                self.customCollectionView.reloadData()
+            }
+        }
         customCollectionView.reloadData()
     }
 }
@@ -84,15 +96,30 @@ extension SearchViewController: UISearchControllerDelegate {
 extension SearchViewController: UISearchBarDelegate {
     func setupSearchController(for viewController: UIViewController) {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "영화 볼까나"
+        searchController.searchBar.placeholder = "제목으로 검색"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonAction))
         
         searchController.searchBar.delegate = self
         searchController.delegate = self
         
         viewController.navigationItem.searchController = searchController
         viewController.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    @objc func backButtonAction() {
+        searchManager.fetchPopularMovies {
+            DispatchQueue.main.async {
+                self.customCollectionView.reloadData()
+            }
+        }
+        if let searchController = navigationItem.searchController {
+            searchController.searchBar.text = ""
+        }
+        customCollectionView.reloadData()
+        navigationController?.popViewController(animated: true)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
