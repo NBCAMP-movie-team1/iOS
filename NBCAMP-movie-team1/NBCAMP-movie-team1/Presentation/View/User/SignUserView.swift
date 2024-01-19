@@ -14,6 +14,9 @@ class SignUserView: UIView {
     let logoImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "LogoImage"))
         imageView.contentMode = .scaleAspectFit
+        imageView.widthAnchor.constraint(equalToConstant: 100 * 1.5).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 40 * 1.5).isActive = true
+        
         return imageView
     }()
     
@@ -68,34 +71,30 @@ extension SignUserView {
     }
     
     private func setLayout() {
+        let usernameStackView = UIStackView(arrangedSubviews: [logoImageView, usernameTextField])
+        usernameStackView.axis = .vertical
+        usernameStackView.spacing = 100
         
-        let stackView = UIStackView(arrangedSubviews: [logoImageView, usernameTextField, passwordTextField, loginButton, signUpButton])
+        let stackView = UIStackView(arrangedSubviews: [usernameStackView, passwordTextField, loginButton, signUpButton])
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         self.addSubview(stackView)
+        
+        setAutoLayout(stackView)
+    }
 
+    // MARK: - Auto Layout
+
+    private func setAutoLayout(_ stackView: UIStackView) {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
         ])
-        
     }
-    
-    // MARK: - Auto Layout
-    
-    private func setAutoLayout(_ stackView: UIStackView) {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-        ])
-    }
-    
 }
