@@ -39,10 +39,6 @@ class SearchManager{
                 
                 if self.filteredArr.isEmpty {
                     DispatchQueue.main.async{ self.showAlert() }
-                    self.fetchPopularMovies {
-                        DispatchQueue.main.async {
-                        }
-                    }
                 } else {
                     completionHandler()
                 }

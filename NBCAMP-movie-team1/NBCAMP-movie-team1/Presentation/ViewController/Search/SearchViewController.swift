@@ -10,8 +10,11 @@ import UIKit
 class SearchViewController: UIViewController{
     var customCollectionView: CustomCollectionView!
     var searchManager = SearchManager()
+    var sectionLabel: MovieSectionLabel!
     
     override func viewDidLoad() {
+        configureSectionLabel()
+        
         configureCollectionView()
         view.backgroundColor = .white
         setupSearchController(for: self)
@@ -22,9 +25,19 @@ class SearchViewController: UIViewController{
             searchManager.fetchPopularMovies {
                 DispatchQueue.main.async {
                     self.customCollectionView.reloadData()
+                    self.sectionLabel.isHidden = false
                 }
             }
         }
+    }
+    
+    func configureSectionLabel() {
+        sectionLabel = MovieSectionLabel(text: "추천 영화")
+        sectionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(sectionLabel)
+        sectionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 110).isActive = true
+        sectionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        sectionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
     
     func registerCollectionView() {
@@ -66,9 +79,9 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
         let cellWidth = collectionView.bounds.size.width * 0.5
         let cellHeight = cellWidth * 1.7
         let lay = collectionViewLayout as! UICollectionViewFlowLayout
-
+        
         let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
-
+        
         
         return CGSize(width: widthPerItem, height: cellHeight)
     }
@@ -85,6 +98,7 @@ extension SearchViewController: UISearchControllerDelegate {
     func willDismissSearchController(_ searchController: UISearchController) {
         searchManager.fetchPopularMovies {
             DispatchQueue.main.async {
+                self.sectionLabel.text = "추천 목록"
                 self.customCollectionView.reloadData()
             }
         }
@@ -99,7 +113,7 @@ extension SearchViewController: UISearchBarDelegate {
         searchController.searchBar.placeholder = "제목으로 검색"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
-
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonAction))
         
         searchController.searchBar.delegate = self
@@ -115,6 +129,7 @@ extension SearchViewController: UISearchBarDelegate {
                 self.customCollectionView.reloadData()
             }
         }
+        self.sectionLabel.text = "추천 목록"
         if let searchController = navigationItem.searchController {
             searchController.searchBar.text = ""
         }
@@ -128,5 +143,6 @@ extension SearchViewController: UISearchBarDelegate {
                 DispatchQueue.main.async{ self.customCollectionView.reloadData() }
             }
         }
+        self.sectionLabel.text = "검색 목록"
     }
 }
