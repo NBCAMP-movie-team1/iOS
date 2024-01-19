@@ -20,7 +20,7 @@ class MovieListCollectionView: UIView {
     
     // MARK: - UI Properties
     
-    private let nowPlayingLabel: UILabel
+    private let sectionLabel: UILabel
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,7 +36,7 @@ class MovieListCollectionView: UIView {
     // MARK: - Life Cycle
     
     init(sectionTitle: String) {
-        nowPlayingLabel = MovieSectionLabel(text: sectionTitle)
+        sectionLabel = MovieSectionLabel(text: sectionTitle)
         
         super.init(frame: .zero)
         
@@ -63,20 +63,20 @@ extension MovieListCollectionView {
     private func setUI() {
         self.backgroundColor = .white
         
-        [nowPlayingLabel, collectionView].forEach {
+        [sectionLabel, collectionView].forEach {
             self.addSubview($0)
         }
     }
     
     private func setLayout() {
-        nowPlayingLabel.translatesAutoresizingMaskIntoConstraints = false
+        sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            nowPlayingLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            nowPlayingLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            nowPlayingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            sectionLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            sectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            sectionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: nowPlayingLabel.bottomAnchor, constant: 15),
+            collectionView.topAnchor.constraint(equalTo: sectionLabel.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
