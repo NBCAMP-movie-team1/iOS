@@ -11,7 +11,7 @@ final class DetailMovieRequest {
     static func detailMovieRequest(_ movieId: Int, completion: @escaping (Result<MovieInfo, Error>) -> Void) {
         let apiKey = Bundle.main.apiKey
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?language=en-US")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?language=ko-KR")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = [

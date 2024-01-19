@@ -12,7 +12,7 @@ final class MovieRequest {
     static func allMovieRequest(_ section: String, page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         let apiKey = Bundle.main.apiKey
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(section)?language=en-US&page=\(page)")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(section)?language=ko-KR&page=\(page)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = [
@@ -27,7 +27,7 @@ final class MovieRequest {
     static func searchMovieRequest(_ query: String, page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         let apiKey = Bundle.main.apiKey
         
-        let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=false&language=en-US&page=\(page)")!
+        let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=false&language=ko-KR&page=\(page)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = [
