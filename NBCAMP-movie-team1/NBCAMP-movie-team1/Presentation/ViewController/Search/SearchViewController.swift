@@ -52,7 +52,7 @@ class SearchViewController: UIViewController{
         customCollectionView.translatesAutoresizingMaskIntoConstraints = false
         customCollectionView.backgroundColor = .clear
         self.view.addSubview(customCollectionView)
-        customCollectionView.topAnchor.constraint(equalTo: sectionLabel.bottomAnchor).isActive = true
+        customCollectionView.topAnchor.constraint(equalTo: sectionLabel.bottomAnchor, constant: 15).isActive = true
         customCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         customCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         customCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
