@@ -7,31 +7,14 @@
 
 import Foundation
 
-struct UserModel {
-    static var username: String {
-        get {
-            UserDefaults.standard.string(forKey: "username") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "username")
-        }
-    }
+struct UserModel : Codable {
+    let username: String
+    let password: String
+    let nickname: String
 
-    static var password: String {
-        get {
-            UserDefaults.standard.string(forKey: "password") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "password")
-        }
-    }
-    
-    static var nickname: String {
-        get {
-            UserDefaults.standard.string(forKey: "nickname") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "nickname")
-        }
+    init(username: String, password: String, nickname: String) {
+        self.username = username
+        self.password = password
+        self.nickname = nickname
     }
 }

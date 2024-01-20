@@ -39,26 +39,23 @@ extension MainViewController {
               let inputPassword = signUserView.passwordTextField.text else {
             return
         }
-
-        let savedUsername = UserDefaults.standard.string(forKey: "username")
-        let savedPassword = UserDefaults.standard.string(forKey: "password")
-
+        
+        let authUser : Bool = UserListModel.authenticateUser(username: inputUsername, password: inputPassword)
+        
         // 아이디와 비밀번호가 모두 저장되어 있을 때만 비교합니다.
-        if let savedUsername = savedUsername, let savedPassword = savedPassword {
-            // 로그인을 처리하는 로직
-            if savedUsername == inputUsername && savedPassword == inputPassword  {
-                print("로그인 성공")
-                self.navigationController?.pushViewController(movieListViewController, animated: true)
-            } else {
-                let alertController = UIAlertController(title: "로그인 실패", message: "아이디 또는 비밀번호가 일치하지 않습니다.", preferredStyle: .alert)
-
-                let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-                alertController.addAction(okAction)
-
-                present(alertController, animated: true, completion: nil)
-            }
+        if authUser {
+            print("로그인 성공")
+            self.navigationController?.pushViewController(movieListViewController, animated: true)
+        } else {
+            let alertController = UIAlertController(title: "로그인 실패", message: "아이디 또는 비밀번호가 일치하지 않습니다.", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
         }
-
+        
+        
     }
 
     @objc func signUpButtonTapped() {
