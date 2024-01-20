@@ -9,17 +9,33 @@ import UIKit
 
 class PaymentViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private let data: MovieInfo
+    
     // MARK: - UI Properties
     
     let paymentView = PaymentView()
     
     // MARK: - Life Cycle
     
+    init(data: MovieInfo) {
+        self.data = data
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setLayout()
+        paymentView.setMovieInfo(data)
+        paymentView.delegate = self
     }
     
 }
@@ -27,15 +43,8 @@ class PaymentViewController: UIViewController {
 // MARK: - Extensions
 
 extension PaymentViewController {
-    @objc private func goToMovieListButton() {
-        if let targetViewController = self.navigationController?.viewControllers.first(where: { $0 is MovieListViewController }) {
-            self.navigationController?.popToViewController(targetViewController, animated: true)
-        }
-    }
-    
     private func setUI() {
         view.backgroundColor = .white
-        paymentView.button.addTarget(self, action: #selector(goToMovieListButton), for: .touchUpInside)
     }
     
     private func setLayout() {
@@ -48,5 +57,17 @@ extension PaymentViewController {
             paymentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             paymentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
+    }
+}
+
+extension PaymentViewController: PaymentViewDelegate {
+    func didTapOKButton() {
+        navigateToNextScreen()
+    }
+    
+    private func navigateToNextScreen() {
+        if let targetViewController = self.navigationController?.viewControllers.first(where: { $0 is MovieListViewController }) {
+            self.navigationController?.popToViewController(targetViewController, animated: true)
+        }
     }
 }

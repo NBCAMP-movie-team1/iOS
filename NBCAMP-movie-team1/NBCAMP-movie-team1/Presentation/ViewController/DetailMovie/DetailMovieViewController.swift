@@ -57,7 +57,7 @@ class DetailMovieViewController: UIViewController {
 
 extension DetailMovieViewController {
     @objc private func goToPaymentButton() {
-        print("결제화면으로 화면 전환")
+        navigationController?.pushViewController(PaymentViewController(data: self.data!), animated: true)
     }
     
     private func setUI() {

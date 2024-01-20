@@ -22,9 +22,7 @@ class MainViewController: UIViewController {
         
         setUI()
         setLayout()
-        
     }
-    
 }
 
 // MARK: - Extensions

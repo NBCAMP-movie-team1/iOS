@@ -88,7 +88,8 @@ extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSou
         let searchMovie = searchManager.filteredArr[indexPath.row]
         let detailView = DetailMovieViewController(movieId: searchMovie.id)
         
-        present(detailView, animated: true, completion: nil)
+//        present(detailView, animated: true, completion: nil)
+        navigationController?.pushViewController(detailView, animated: true)
     }
 }
 
