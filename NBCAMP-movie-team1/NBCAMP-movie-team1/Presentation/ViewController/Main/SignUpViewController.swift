@@ -54,7 +54,7 @@ extension SignUpViewController {
             return
         }
 
-        UserListModel.addUser(username: username, password: nickname, nickname: password)
+        UserListModel.addUser(username: username, password: password, nickname: nickname)
    
         let signUpSuccessful = true
 
