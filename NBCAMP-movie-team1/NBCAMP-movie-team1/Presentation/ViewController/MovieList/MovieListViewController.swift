@@ -37,21 +37,21 @@ class MovieListViewController: UIViewController {
     }()
     
     private lazy var nowPlayingView: MovieListCollectionView = {
-        let nowPlayingView = MovieListCollectionView(sectionTitle: "Now Playing")
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "현재 상영중")
         nowPlayingView.movieList = nowPlayingList
         
         return nowPlayingView
     }()
     
     private lazy var popularView: MovieListCollectionView = {
-        let nowPlayingView = MovieListCollectionView(sectionTitle: "Popular")
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "많이 본 작품")
         nowPlayingView.movieList = popularList
         
         return nowPlayingView
     }()
     
     private lazy var topRatedView: MovieListCollectionView = {
-        let nowPlayingView = MovieListCollectionView(sectionTitle: "Top Rated")
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "관객의 선택")
         nowPlayingView.movieList = topRatedList
         
         return nowPlayingView
@@ -146,9 +146,9 @@ extension MovieListViewController {
         ])
         
         NSLayoutConstraint.activate([
-            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10),
-            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10),
-            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 4.5/10)
+            nowPlayingView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3.5/10),
+            popularView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3.5/10),
+            topRatedView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 3.5/10)
         ])
     }
     

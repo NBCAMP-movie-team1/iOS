@@ -76,7 +76,7 @@ extension MovieListCollectionView {
             sectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             sectionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: sectionLabel.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: sectionLabel.bottomAnchor, constant: 15),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
