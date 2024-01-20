@@ -54,10 +54,19 @@ class PaymentView: UIView {
         let picker = UIDatePicker()
         picker.datePickerMode = .dateAndTime
         picker.translatesAutoresizingMaskIntoConstraints = false
-        
+
+        let currentDate = Date()
+
+        picker.minimumDate = currentDate
+        picker.maximumDate = Calendar.current.date(byAdding: .day, value: 3, to: currentDate)
+        picker.locale = Locale(identifier: "ko_KR")
+        picker.minuteInterval = 30
+
+        picker.setDate(currentDate, animated: false)
+
         return picker
     }()
-    
+
     private lazy var numberOfPeopleTitleLabel: UILabel = MovieSectionLabel(text: "인원")
     
     private lazy var numberOfPeopleLabel: UILabel = {
@@ -192,15 +201,16 @@ extension PaymentView {
         let date = DateFormatter.localizedString(from: datePicker.date, dateStyle: .medium, timeStyle: .short)
         let numberOfPeople = numberOfPeopleLabel.text ?? "1"
         let amount = amountLabel.text ?? "0"
-        return "Title: \(title)\nDate: \(date)\nNumber of People: \(numberOfPeople)\nAmount: \(amount)"
+        return "제목: \(title)\n날짜: \(date)\n인원: \(numberOfPeople)\n금액: \(amount)\n\n 결제하시겠습니까?"
     }
     
     func showAlert(with message: String) {
-        let alert = UIAlertController(title: "Payment Information", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "예매 영화 정보", message: message, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.delegate?.didTapOKButton()
         }))
+        alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel))
         
         if let viewController = findViewController() {
             viewController.present(alert, animated: true, completion: nil)
