@@ -6,7 +6,6 @@
 //
 
 import Foundation
-// UserListModel.swift
 
 class UserListModel {
     private static var users: [UserModel] {

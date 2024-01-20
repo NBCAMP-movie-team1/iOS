@@ -94,18 +94,19 @@ extension SignUpUserView {
     
     private func setLayout() {
 
-        let usernameStackView = UIStackView(arrangedSubviews: [logoImageView, validationLabel, usernameTextField, validationLabel])
-        usernameStackView.axis = .vertical
-        usernameStackView.spacing = 10
-
-        let stackView = UIStackView(arrangedSubviews: [usernameStackView, nicknameTextField, passwordTextField, signUpButton])
+        let stackView = UIStackView(arrangedSubviews: [validationLabel, usernameTextField, validationLabel, nicknameTextField, passwordTextField, signUpButton])
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        self.addSubview(stackView)
+        let usernameStackView = UIStackView(arrangedSubviews: [logoImageView, stackView])
+        usernameStackView.axis = .vertical
+        usernameStackView.spacing = 100
+        usernameStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        setAutoLayout(stackView)
+        self.addSubview(usernameStackView)
+
+        setAutoLayout(usernameStackView)
     }
 
     // MARK: - Auto Layout

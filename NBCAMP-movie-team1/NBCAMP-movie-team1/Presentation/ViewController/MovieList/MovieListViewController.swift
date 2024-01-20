@@ -37,21 +37,21 @@ class MovieListViewController: UIViewController {
     }()
     
     private lazy var nowPlayingView: MovieListCollectionView = {
-        let nowPlayingView = MovieListCollectionView(sectionTitle: "현재 상영중")
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "🌱 현재 상영중")
         nowPlayingView.movieList = nowPlayingList
         
         return nowPlayingView
     }()
     
     private lazy var popularView: MovieListCollectionView = {
-        let nowPlayingView = MovieListCollectionView(sectionTitle: "많이 본 작품")
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "💯 많이 본 작품")
         nowPlayingView.movieList = popularList
         
         return nowPlayingView
     }()
     
     private lazy var topRatedView: MovieListCollectionView = {
-        let nowPlayingView = MovieListCollectionView(sectionTitle: "관객의 선택")
+        let nowPlayingView = MovieListCollectionView(sectionTitle: "💙 관객의 선택")
         nowPlayingView.movieList = topRatedList
         
         return nowPlayingView
@@ -158,7 +158,7 @@ extension MovieListViewController {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 30
+        stackView.spacing = 40
         
         [nowPlayingView, popularView, topRatedView].forEach {
             stackView.addArrangedSubview($0)
