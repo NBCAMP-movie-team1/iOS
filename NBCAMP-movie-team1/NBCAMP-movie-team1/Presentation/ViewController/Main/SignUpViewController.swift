@@ -29,12 +29,12 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController {
     private func setUI() {
         view.backgroundColor = .white
+        view.addSubview(signUpUserView)
             
         signUpUserView.signUpButton.addTarget(self , action: #selector(userDefaultButtonTapped), for: .touchUpInside)
     }
     
     private func setLayout() {
-        view.addSubview(signUpUserView)
         
         signUpUserView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

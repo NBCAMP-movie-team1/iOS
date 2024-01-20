@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol MovieListCollectionViewDelegate: AnyObject {
-    func didSelectMovie(withId movieId: Int)
-}
-
 class MovieListCollectionView: UIView {
     
     // MARK: - Properties
