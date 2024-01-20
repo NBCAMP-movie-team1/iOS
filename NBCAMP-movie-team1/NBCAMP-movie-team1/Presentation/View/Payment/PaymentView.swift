@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol PaymentViewDelegate: AnyObject {
-    func didTapOKButton()
-}
-
 class PaymentView: UIView {
     
     // MARK: - Properties
