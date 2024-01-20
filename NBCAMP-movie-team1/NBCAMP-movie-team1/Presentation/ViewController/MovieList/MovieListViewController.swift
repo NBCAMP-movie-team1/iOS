@@ -65,6 +65,14 @@ class MovieListViewController: UIViewController {
         return button
     }()
     
+    private lazy var mypageButton: UIBarButtonItem = {
+        let personImage = UIImage(systemName: "person.fill")
+        let button = UIBarButtonItem(image: personImage, style: .plain, target: self, action: #selector(goToMypageViewController))
+        button.tintColor = .systemGray
+        
+        return button
+    }()
+    
     private let movieListManager = MovieListManager()
     
     // MARK: - Life Cycle
@@ -99,7 +107,7 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController {
     func setNavigationItem() {
         self.navigationItem.hidesBackButton = true
-        self.navigationItem.rightBarButtonItem = searchButton
+        self.navigationItem.rightBarButtonItems = [mypageButton, searchButton]
         self.navigationItem.titleView = mainLogo
     }
     
@@ -112,6 +120,10 @@ extension MovieListViewController {
         self.navigationController?.view.layer.add(transition, forKey: kCATransition)
 
         self.navigationController?.pushViewController(searchViewController, animated: false)
+    }
+    
+    @objc private func goToMypageViewController() {
+        self.navigationController?.pushViewController(MypageViewController(), animated: true)
     }
 }
 
