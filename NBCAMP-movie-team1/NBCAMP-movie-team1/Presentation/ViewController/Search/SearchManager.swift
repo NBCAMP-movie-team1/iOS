@@ -10,6 +10,20 @@ import UIKit
 
 class SearchManager{
     var filteredArr: [MovieList] = []
+    func fetchPopularMovies(completionHandler: @escaping () -> Void) {
+        MovieRequest.allMovieRequest("popular", page: 1) { result in
+            switch result {
+            case .success(let movies):
+                self.filteredArr = movies.map {
+                    MovieList(title: $0.title, imagePath: $0.posterPath ?? "", popularity: $0.popularity, id: $0.id)
+                }
+                completionHandler()
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
     func fetchData(text: String, completionHandler: @escaping() -> Void) {
         guard !text.isEmpty else {
             return
